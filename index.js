@@ -71,6 +71,7 @@ io.on("connection", socket => {
     socket.join(socket.room);
     socket.use(routeMessages(socket));
 
+
     // let the connecting client know about everyone else in the room
     if (rooms[socket.room] !== undefined) {
         const roomSockets = rooms[socket.room].sockets;
@@ -94,6 +95,16 @@ io.on("connection", socket => {
         .emit("__client_connected__", [{ id: socket.id, type: socket.type }]);
 
     console.log(`CONNECTING TO ${socket.room}: ${socket.type} (${socket.id})`);
+
+
+    // // Listen for tilt messages from clients
+    // socket.on('tilt', function (data) {
+    // // Data comes in as whatever was sent, including objects
+    // //console.log("Received: 'message' " + data);
+
+    // // Send data to all the namespace clients
+    // namespace.emit('tilt', data);
+//   });
 
     // clean up on disconnection
     socket.on("disconnecting", handleDisconnect(socket));
