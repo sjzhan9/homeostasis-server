@@ -1,3 +1,10 @@
+// Asking for permision for motion sensors on iOS 13+ devices
+if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    document.body.addEventListener('click', function () {
+      DeviceOrientationEvent.requestPermission(); 
+      DeviceMotionEvent.requestPermission(); 
+    })
+  }
 
 // Setup connection
 const connection = new Connection("Bouncer", "user");
@@ -36,15 +43,6 @@ window.oncontextmenu = function(event) {
 
 //P5 Section
 
-// Asking for permision for motion sensors on iOS 13+ devices
-if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    document.body.addEventListener('click', function () {
-      DeviceOrientationEvent.requestPermission(); 
-      DeviceMotionEvent.requestPermission(); 
-    })
-  }
-
-  
   function setup() {
     createCanvas(windowWidth, windowHeight);
     textAlign(CENTER);
@@ -96,6 +94,7 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     //Send cordinate through connection.js
     let x = lr;
     let y = tb;
+    console.log("cordinates are"+ x + y)
     sendMove(x, y);
 
   }

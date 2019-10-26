@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<!--suppress ALL -->
-<html lang="en">
-    <meta
+<html>
+        <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
@@ -11,22 +10,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
         <link rel="stylesheet" href="homeostasis/style.css" />
+
     </head>
 
     <body>
-        <div class="app">
-
+            <script src="/common/connection.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/homeostasis/main.js"></script>
+        <!-- <div class="app">
             <p class="instructions">
                 Tilt your device to set direction of car.
             </p>
-
-        </div>
-        <script src="/common/connection.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-
-
-        <script src="homeostasis/main.js"></script>
-
-
+        </div> -->
     </body>
 </html>
