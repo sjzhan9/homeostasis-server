@@ -97,13 +97,13 @@ io.on("connection", socket => {
     console.log(`CONNECTING TO ${socket.room}: ${socket.type} (${socket.id})`);
 
 
-    // // Listen for tilt messages from clients
-    // socket.on('tilt', function (data) {
-    // // Data comes in as whatever was sent, including objects
-    // //console.log("Received: 'message' " + data);
+//     // Listen for tilt messages from clients
+//     socket.on('tilt', function (data) {
+//     // Data comes in as whatever was sent, including objects
+//     //console.log("Received: 'message' " + data);
 
-    // // Send data to all the namespace clients
-    // namespace.emit('tilt', data);
+//     // Send data to all the namespace clients
+//     namespace.emit('tilt', data);
 //   });
 
     // clean up on disconnection

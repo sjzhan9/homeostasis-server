@@ -14,55 +14,9 @@
     right: 20px;
     top: 20px;
     bottom: 20px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.sliders {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
-
-.slider-label {
-    margin: 1rem 0 1rem 0;
-}
-
-.sliders > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    width: 100%;
-}
-
-#message-area {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#message {
-    border: 4px solid red;
-    height: 5rem;
-    width: 100%;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    user-select: text;
-    font-size: 1.5rem;
-    padding: 0.25rem;
-}
-
-#touch-area {
-    border: 4px solid red;
-    width: 100%;
-    height: 40%;
-}
 
 #number {
     font-size: 5rem;
@@ -75,62 +29,4 @@
     font-weight: 100;
     text-align: left;
     margin: 0.5rem 0.25rem 0.5rem 0.25rem;
-}
-
-#scale-slider {
-    height: 2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    width: 100%;
-}
-
-#speed-slider {
-    height: 2rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    width: 100%;
-}
-
-input[type="range"] {
-    -webkit-appearance: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-
-input[type="range"]::-moz-range-track {
-    -moz-appearance: none;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 3rem;
-    margin-top: -1.5rem;
-    background: red;
-}
-
-input[type="range"]::-moz-range-thumb {
-    -moz-appearance: none;
-    border: none;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 3rem;
-    margin-top: -1.5rem;
-    background: red;
-}
-
-input[type="range"]:focus {
-    outline: none;
 }
