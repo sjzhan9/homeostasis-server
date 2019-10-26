@@ -1,3 +1,4 @@
+
 // Setup connection
 const connection = new Connection("Bouncer", "user");
 
@@ -23,6 +24,8 @@ connection.onOtherDisconnect((otherId, type) => {
     }
 });
 
+
+
 // Get rid of annoying context menus in Chrome when long clicking
 window.oncontextmenu = function(event) {
     event.preventDefault();
@@ -40,9 +43,10 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       DeviceMotionEvent.requestPermission(); 
     })
   }
+
   
   function setup() {
-    createCanvas(windowWidth, windowHeight/2);
+    createCanvas(windowWidth, windowHeight);
     textAlign(CENTER);
   }
   
