@@ -4,23 +4,56 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
     />
+    
     <head>
-        <title>BOUNCER</title>
+        <title>Homeostasis</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
         <link rel="stylesheet" href="homeostasis/style.css" />
-
     </head>
 
-    <body>
+    <body onload="onLoad()">
             <script src="/common/connection.js"></script>
             <script src="/socket.io/socket.io.js"></script>
             <script src="/homeostasis/main.js"></script>
-        <!-- <div class="app">
-            <p class="instructions">
-                Tilt your device to set direction of car.
-            </p>
-        </div> -->
+            <script src="/homeostasis/ui.js"></script>
+
+            
+                <div id="view1" class="homeostasis center flex-center scene1">
+                            <h1>Homeostasis</h1>    
+                            <p>Welcome to the game, <br>click the button below to get started</p>
+                            <button class="center" onclick="transitionToView2()">Next</button>
+                </div>
+                
+                <div id="view2" class="homeostasis center flex-center scene1">
+                        <div>
+                            <h1>Balance your device</h1>
+                            <p>Move the circle into the holes in the correct order</p>
+                        </div>
+                        <div>            
+                        </div>
+                        <button class="center" onclick="transitionToView3()">Continue</button>
+                </div>
+            
+                <div id="view3" class="homeostasis center flex-center scene1">
+                        <h1 style="padding-top: 20vh;">SEA</h1>
+                        <img src="/homeostasis/assets/phone.png" style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
+                        <p style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
+                </div>
+            
+                <div id="view4" class="homeostasis center flex-center scene1">
+                        <div>
+                            <h1>SEA</h1>
+                            <p>Keep the homeostasis of the sea</p>
+                        </div>
+            
+                        <div id="sketch-holder" style="height:500px;">
+                                <script src="/homeostasis/scene1.js"></script>
+                        </div>
+                        <div class="float-card">
+                            <h3>Where am I</h3>
+                            </div>
+                </div>      
     </body>
 </html>

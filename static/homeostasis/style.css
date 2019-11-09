@@ -1,32 +1,74 @@
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    font-family: sans-serif;
-    box-sizing: border-box;
+body{
+    margin: 0px;
 }
 
-.app {
-    position: fixed;
-    left: 20px;
-    right: 20px;
-    top: 20px;
-    bottom: 20px;
+.homeostasis{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    position: absolute;
+
+}
+
+.homeostasis button{
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+    width: 214px;
+    height: 74px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
     align-items: center;
-}
-
-
-#number {
-    font-size: 5rem;
     text-align: center;
-    margin-bottom: 0.25rem;
+
+    margin-bottom: 40px;
 }
 
-.instructions {
-    font-size: 1rem;
-    font-weight: 100;
-    text-align: left;
-    margin: 0.5rem 0.25rem 0.5rem 0.25rem;
+.homeostasis p {
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+text-align: center;
+color: rgba(255, 255, 255, 0.74);
 }
+
+.flex-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.float-card{
+    background: #3086DD;
+    /* card-shadow */
+    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 24px 24px 0px 0px;
+}
+
+.scene1{
+    background: linear-gradient(177.17deg, #5DB5F5 15.84%, #69AEFF 61.26%, #177DDB 93.69%);
+}
+
+#view1{
+    background-color: rgb(219, 219, 219);
+}
+
+#view2{
+    color: white;
+    background-color: rgb(4, 30, 116);
+}
+
