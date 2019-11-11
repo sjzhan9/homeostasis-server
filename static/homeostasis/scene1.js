@@ -106,7 +106,10 @@ connection.onOtherDisconnect((otherId, type) => {
     text(tb, width / 2, height / 2);
     
     sendMove(0, tb);
-    
+
+    if(frameCount % 12 == 0){
+      sendMove(0, tb);
+  }    
   }
   
   function touchStarted() {
