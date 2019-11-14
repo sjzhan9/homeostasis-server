@@ -41,10 +41,10 @@ connection.onOtherDisconnect((otherId, type) => {
   }
   
   function setup() {
-    var canvas = createCanvas(300, 500);
+    var canvas = createCanvas(windowWidth, windowHeight);
 
       // Move the canvas so it’s inside our <div id="sketch-holder">.
-    canvas.parent('sketch-holder');
+    canvas.parent('sketch-holder2');
   
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       document.body.addEventListener('click', function() {
@@ -105,11 +105,12 @@ connection.onOtherDisconnect((otherId, type) => {
     fill(0, 100, 100);
     text(tb, width / 2, height / 2);
     
-    sendMove(0, tb);
+    // sendMove(0, tb);
 
     if(frameCount % 12 == 0){
       sendMove(0, tb);
   }    
+
   }
   
   function touchStarted() {

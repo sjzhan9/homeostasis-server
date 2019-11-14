@@ -26,28 +26,31 @@
                 </div>
                 
                 <div id="view2" class="homeostasis center flex-center scene1">
-                        <div>
-                            <h1>Balance your device</h1>
-                            <p>Move the circle into the holes in the correct order</p>
+                        <div id="v2-titles">
+                            <h1>Prepare your tilt sensor</h1>
+                            <p>Lock rotation on your phone. If the circle 
+                                doesn't move as you tilt your phone, 
+                                please tap on the screen and allow motion sensing.</p>
                         </div>
-                        <div>            
-                        </div>
+                        <div id="sketch-holder1" style="height:100vh;">
+                                <script src="/homeostasis/scene2.js"></script>
+                        </div>          
                         <button class="center" onclick="transitionToView3()">Continue</button>
                 </div>
             
                 <div id="view3" class="homeostasis center flex-center scene1">
-                        <h1 style="padding-top: 20vh;">SEA</h1>
-                        <img src="/homeostasis/assets/phone.png" style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
-                        <p style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
+                        <h1 id="v3-title">SEA</h1>
+                        <img id="v3-img" src="/homeostasis/assets/phone.png" style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
+                        <p id="v3-p" style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
                 </div>
             
                 <div id="view4" class="homeostasis center flex-center scene1">
-                        <div>
-                            <h1 id="sea-title">SEA</h1>
+                        <div id="v4-titles">
+                            <h1>SEA</h1>
                             <p>Keep the homeostasis of the sea</p>
                         </div>
             
-                        <div id="sketch-holder" style="height:500px;">
+                        <div id="sketch-holder2" style="height:100vh;">
                                 <script src="/homeostasis/scene1.js"></script>
                         </div>
                         <div class="float-card">
