@@ -5,31 +5,31 @@ window.oncontextmenu = function(event) {
   };
 
   // Setup connection
-const connection = new Connection("Bouncer", "user");
+  const connection = new Connection("Bouncer", "user");
 
-// Messages
-const sendMove = (x, y) => {
-    connection.send("move", x, y);
-};
-
-// Lifecycle handlers
-connection.onConnect(() => console.log("I connected with id:", connection.id));
-
-connection.onDisconnect(() => {
-    console.log("I disconnected with id:", connection.id);
-});
-
-connection.onOtherConnect((otherId, type) => {
-    console.log(type, "connected:", otherId);
-});
-
-connection.onOtherDisconnect((otherId, type) => {
-    console.log(type, "disconnected:", otherId);
-    if (type === "app") {
-    }
-});
-
-
+  // Messages
+  const sendMove = (x, y) => {
+      connection.send("move", x, y);
+  };
+  
+  // Lifecycle handlers
+  connection.onConnect(() => console.log("I connected with id:", connection.id));
+  
+  connection.onDisconnect(() => {
+      console.log("I disconnected with id:", connection.id);
+  });
+  
+  connection.onOtherConnect((otherId, type) => {
+      console.log(type, "connected:", otherId);
+  });
+  
+  connection.onOtherDisconnect((otherId, type) => {
+      console.log(type, "disconnected:", otherId);
+      if (type === "app") {
+      }
+  });
+  
+  
 //p5
   
   let waveJ;

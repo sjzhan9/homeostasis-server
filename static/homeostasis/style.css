@@ -112,9 +112,9 @@ color: rgba(255, 255, 255, 0.74);
 }
 
 @keyframes v3-p {
-    0%   {opacity: 0; padding-top: 60vh;}
-    20%  {opacity: 0;}
-    35%  {opacity: 1;}
+    0%   {opacity: 0; padding-top: 65vh;}
+    45%  {opacity: 0; padding-top: 65vh;}
+    55%  {opacity: 1; padding-top: 60vh;}
     85%  {opacity: 1;}
     100% {opacity: 0; padding-top: 60vh;}
 
@@ -130,6 +130,12 @@ color: rgba(255, 255, 255, 0.74);
     position: absolute;
     left: 10vw;
     right: 10vw;
+}
+#v2-button{
+    position: absolute;
+    left: 10vw;
+    right: 10vw;
+    bottom: 20px;
 }
 
 #v4-titles{
