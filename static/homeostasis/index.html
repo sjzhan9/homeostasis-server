@@ -1,83 +1,89 @@
 <!DOCTYPE html>
 <html>
-        <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-    />
-    
-    <head>
-        <title>Homeostasis</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
-        <link rel="stylesheet" href="homeostasis/style.css" />
-    </head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-    <body onload="onLoad()">
-        <script src="/socket.io/socket.io.js"></script>
-            <script src="/common/connection.js"></script>
-            <script src="/homeostasis/scene0.js"></script>
-            <script src="/homeostasis/scene1.js"></script>
-            <script src="/homeostasis/ui.js"></script>
+<head>
+    <title>Homeostasis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" href="homeostasis/style.css" />
+</head>
 
-            
-                <div id="view1" class="homeostasis center flex-center scene1">
-                            <h1>Homeostasis</h1>    
-                            <p>Welcome to the game, <br>click the button below to get started</p>
-                            <button class="center" onclick="transitionToView2()">Next</button>
-                </div>
-                
-                <div id="view2" class="homeostasis center flex-center scene1">
-                        <div id="v2-titles">
-                            <h1>Ready your device</h1>
-                            <div class="step-column">
+<body onload="onLoad()">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/common/connection.js"></script>
+    <script src="/homeostasis/scene0.js"></script>
+    <script src="/homeostasis/scene1.js"></script>
+    <script src="/homeostasis/ui.js"></script>
 
-                            <div class="step-container">
-                                <div class= "step-number">1</div>
-                                <h3 class="step-instructions">Lock rotation on your phone.</h3>
-                            </div>
-                            <div class="step-container">
-                                <div class= "step-number">2</div>
-                                <h3 class="step-instructions">Turn on volume.</h3>
-                            </div>
-                            <div class="step-container">
-                                <div class= "step-number">3</div>
-                                <h3 class="step-instructions">Tap your screen and allow motion tracking.</h3>
-                            </div>
-                            <div class="step-container">
-                                <div class= "step-number">4</div>
-                                <h3 class="step-instructions">Tilt your device to move the circle around</h3>
-                            </div>
 
-                        </div>
-                        </div>
-                        <div id="sketch-holder1" style="height:100vh;">
-                            <div id="sceneone"></div>
+    <div id="view1" class="homeostasis center flex-center scene1">
+        <h1>Homeostasis</h1>
+        <p>Welcome to the game, <br>click the button below to get started</p>
+        <button class="center" onclick="transitionToView2()">Next</button>
+    </div>
 
-                        </div>          
-                        <button class="center" id="v2-button" onclick="transitionToView3()">Continue</button>
-                </div>
-            
-                <div id="view3" class="homeostasis center flex-center scene1">
-                        <h1 id="v3-title">SEA</h1>
-                        <img id="v3-img" src="/homeostasis/assets/phone.png" style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
-                        <p id="v3-p" style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
-                </div>
-            
-                <div id="view4" class="homeostasis center flex-center scene1">
-                        <div id="v4-titles">
-                            <h1>SEA</h1>
-                            <p>Keep the homeostasis of the sea</p>
-                        </div>
-            
-                        <div id="sketch-holder2" style="height:100vh;">
-                            <div id="scenetwo"></div>
+    <div id="view2" class="homeostasis center flex-center ">
+        <div id="v2-wrapper">
 
-                                <!-- <script src="/homeostasis/scene1.js"></script> -->
-                        </div>
-                        <div class="float-card">
-                            <h3>Where am I</h3>
-                            </div>
-                </div>      
-    </body>
+        <div id="v2-title">
+            <h1>Ready your device</h1>
+        </div>
+
+        <div class="step-column">
+
+            <div id="v2-i1" class="step-container">
+                <div class="step-number">1</div>
+                <h3 class="step-instructions">Lock rotation on your phone.</h3>
+            </div>
+            <div id="v2-i2" class="step-container">
+                <div class="step-number">2</div>
+                <h3 class="step-instructions">Turn on volume.</h3>
+            </div>
+            <div id="v2-i3" class="step-container">
+                <div class="step-number">3</div>
+                <h3 class="step-instructions">Tap your screen and allow motion tracking.</h3>
+            </div>
+            <div id="v2-i4" class="step-container">
+                <div class="step-number">4</div>
+                <h3 class="step-instructions">Tilt your device to move the circle around</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+
+        <div id="sketch-holder1" style="height:100vh;">
+            <div id="sceneone"></div>
+
+        </div>
+        <button class="center" id="v2-button" onclick="transitionToView3()">Continue</button>
+    </div>
+
+    <div id="view3" class="homeostasis center flex-center scene1">
+        <h1 id="v3-title">SEA</h1>
+        <img id="v3-img" src="/homeostasis/assets/phone.png"
+            style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
+        <p id="v3-p" style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
+    </div>
+
+    <div id="view4" class="homeostasis center flex-center scene1">
+        <div id="v4-titles">
+            <h1>SEA</h1>
+            <p>Keep the homeostasis of the sea</p>
+        </div>
+
+        <div id="sketch-holder2" style="height:100vh;">
+            <div id="scenetwo"></div>
+
+            <!-- <script src="/homeostasis/scene1.js"></script> -->
+        </div>
+        <div class="float-card">
+            <h3>Where am I</h3>
+        </div>
+    </div>
+</body>
+
 </html>
