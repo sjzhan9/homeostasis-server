@@ -13,8 +13,15 @@ window.addEventListener('resize', () => {
   });
 //************ Normalize mobile view height end ************//
 
+
+
 //when the site is loaded, load all views but hide all of them except view1
 function onLoad(){
+    let sketchOne = new SceneOne();
+    let sketchTwo = new SceneTwo();
+
+    new p5(sketchOne.render, 'sceneone');
+    new p5(sketchTwo.render, 'scenetwo');
     var view1 = document.getElementById("view1");
     var view2 = document.getElementById("view2");
     var view3 = document.getElementById("view3");
@@ -22,7 +29,11 @@ function onLoad(){
     view2.style.display = "none";
     view3.style.display = "none";
     view4.style.display = "none";
+
+
 }
+
+
 
 function transitionToView2(){
     view1.style.display = "none";

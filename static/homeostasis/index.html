@@ -16,6 +16,8 @@
     <body onload="onLoad()">
         <script src="/socket.io/socket.io.js"></script>
             <script src="/common/connection.js"></script>
+            <script src="/homeostasis/scene0.js"></script>
+            <script src="/homeostasis/scene1.js"></script>
             <script src="/homeostasis/ui.js"></script>
 
             
@@ -33,8 +35,10 @@
                                 please tap on the screen and allow motion sensing.</p>
                         </div>
                         <div id="sketch-holder1" style="height:100vh;">
+                            <div id="sceneone"></div>
+
                                 <!-- <script src="/homeostasis/scene.js"></script> -->
-                                <iframe src="https://editor.p5js.org/sjzhang/embed/edyAIrQ0v" style="width: 300; height: 500;"></iframe>
+                                <!-- <iframe src="https://editor.p5js.org/sjzhang/embed/edyAIrQ0v" style="width: 300; height: 500;"></iframe> -->
                         </div>          
                         <button class="center" id="v2-button" onclick="transitionToView3()">Continue</button>
                 </div>
@@ -52,7 +56,9 @@
                         </div>
             
                         <div id="sketch-holder2" style="height:100vh;">
-                                <script src="/homeostasis/scene1.js"></script>
+                            <div id="scenetwo"></div>
+
+                                <!-- <script src="/homeostasis/scene1.js"></script> -->
                         </div>
                         <div class="float-card">
                             <h3>Where am I</h3>

@@ -4,12 +4,19 @@ window.oncontextmenu = function(event) {
   return false;
 };
 
+class SceneOne{
+  constructor(){
+      this.render = this.render.bind(this);
+  }
 
-function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight);
+
+render(sketch){
+sketch.setup = function (){
+  var canvas0 = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+      canvas0.id("scene0");
 
       // Move the canvas so it’s inside our <div id="sketch-holder">.
-      canvas.parent('sketch-holder1');
+      canvas0.parent('sketch-holder1');
      
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     document.body.addEventListener('click', function() {
@@ -17,14 +24,14 @@ function setup() {
       DeviceMotionEvent.requestPermission();
     });
   }
-  noStroke();
+  sketch.noStroke();
 }
 
-function draw() {
-  background(230, 230, 230);
+sketch.draw = function(){
+  sketch.background(230, 230, 230);
 
-  let tb = float(rotationX);
-  let lr = float(rotationY);
+  let tb = sketch.float(sketch.rotationX);
+  let lr = sketch.float(sketch.rotationY);
 
   if (tb < -90) {
     tb = -90;
@@ -39,6 +46,8 @@ function draw() {
     tb = 90;
   }
 
-  fill(0);
-  ellipse(width / 2 + lr*5, height / 2 + tb*5, 60);
+  sketch.fill(0);
+  sketch.ellipse(sketch.width / 2 + lr*5, sketch.height / 2 + tb*5, 60);
+}
+}
 }

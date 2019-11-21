@@ -4,6 +4,8 @@ window.oncontextmenu = function(event) {
     return false;
   };
 
+  
+
   // Setup connection
   const connection = new Connection("Bouncer", "user");
 
@@ -31,20 +33,30 @@ window.oncontextmenu = function(event) {
   
   
 //p5
+
+class SceneTwo{
+  constructor(){
+      this.render = this.render.bind(this);
+  }
+
+  render(sketch){
+
   
   let waveJ;
   let amp = 0;
   let lineHeight = 10;
   
-  function preload() {
-    waveJ = loadSound("/homeostasis/assets/wave.mp3");
+  sketch.preload = function(){
+    waveJ = sketch.loadSound("/homeostasis/assets/wave.mp3");
   }
   
-  function setup() {
-    var canvas = createCanvas(windowWidth, windowHeight);
+  sketch.setup = function(){
+    var canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+    canvas.id("scene1");
+
 
       // Move the canvas so it’s inside our <div id="sketch-holder">.
-    canvas.parent('sketch-holder2');
+      canvas.parent('sketch-holder2');
   
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       document.body.addEventListener('click', function() {
@@ -57,23 +69,23 @@ window.oncontextmenu = function(event) {
       });
     }
   
-    colorMode(HSB, 360, 100, 100, 100);
-    noStroke();
+    sketch.colorMode(sketch.HSB, 360, 100, 100, 100);
+    sketch.noStroke();
   
-    lineHeight = windowHeight / 10;
+    lineHeight = sketch.windowHeight / 10;
   
   }
   
-  function draw() {
-    background(0, 0, 100, 50);
+  sketch.draw = function(){
+    sketch.background(0, 0, 100, 50);
   
-    let tb = floor(rotationX);
+    let tb = sketch.floor(sketch.rotationX);
   
-    let newAmp = map(abs(tb), 0, 180, 0, 1);
+    let newAmp = sketch.map(sketch.abs(tb), 0, 180, 0, 1);
   
     if (waveJ.isLoaded()) {
-      fill(255);
-      amp = lerp(amp, newAmp, 0.05);
+      sketch.fill(255);
+      amp = sketch.lerp(amp, newAmp, 0.05);
       waveJ.setVolume(amp);
     }
   
@@ -86,7 +98,7 @@ window.oncontextmenu = function(event) {
     }
   
     // between -90 and 90
-    let centerIndex = int(map(tb, -90, 90, 0, 10));
+    let centerIndex = sketch.int(sketch.map(tb, -90, 90, 0, 10));
   
     for (let i = 0; i < 10; i++) {
       let satVal = 0;
@@ -98,21 +110,24 @@ window.oncontextmenu = function(event) {
         satVal = (i - centerIndex) * 10;
         blueVal += (i - centerIndex) * 5;
       }
-      fill(220, satVal, 100, 80);
-      rect(0, i * lineHeight, width, lineHeight);
+      sketch.fill(220, satVal, 100, 80);
+      sketch.rect(0, i * lineHeight, sketch.width, lineHeight);
     }
   
-    fill(0, 100, 100);
-    text(tb, width / 2, height / 2);
+    sketch.fill(0, 100, 100);
+    sketch.text(tb, sketch.width / 2, sketch.height / 2);
     
     // sendMove(0, tb);
 
-    if(frameCount % 12 == 0){
+    if(sketch.frameCount % 12 == 0){
       sendMove(0, tb);
   }    
 
   }
   
-  function touchStarted() {
-    getAudioContext().resume();
+  sketch.touchStarted = function() {
+    sketch.getAudioContext().resume();
   }
+
+}
+}
