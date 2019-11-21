@@ -34,6 +34,16 @@ body{
     margin-bottom: 40px;
 }
 
+.homeostasis h1 {
+
+    font-size: 32spx;
+    line-height: 48px;
+    text-align: center;
+    margin-top: 60px;
+    margin-top: 40px;
+
+    }
+
 .homeostasis p {
 font-style: normal;
 font-weight: normal;
@@ -71,6 +81,76 @@ color: rgba(255, 255, 255, 0.74);
 
 #view1{
     background-color: rgb(219, 219, 219);
+}
+
+
+
+#view2{
+    color: rgb(31, 31, 31);
+    background-color: rgb(230, 230, 230);
+}
+
+.step-column{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+.step-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.step-number{
+
+    position: relative;
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid #333333;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin: 16px;
+
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    align-items: center;
+    text-align: center;
+}
+
+.step-instructions{
+
+left: 20.19%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+display: flex;
+text-align: left;
+color: #333333;
+}
+
+#v2-titles{
+    position: absolute;
+    left: 10vw;
+    right: 10vw;
+}
+#v2-button{
+    position: absolute;
+    left: 10vw;
+    right: 10vw;
+    bottom: 20px;
 }
 
 #v3-title{
@@ -122,23 +202,6 @@ color: rgba(255, 255, 255, 0.74);
 
     }
 
-
-#view2{
-    color: white;
-    background-color: rgb(4, 30, 116);
-}
-
-#v2-titles{
-    position: absolute;
-    left: 10vw;
-    right: 10vw;
-}
-#v2-button{
-    position: absolute;
-    left: 10vw;
-    right: 10vw;
-    bottom: 20px;
-}
 
 #v4-titles{
     position: absolute;
