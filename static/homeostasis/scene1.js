@@ -21,9 +21,9 @@ connection.on('move', function (data) {
   // Data comes in as whatever was sent, including objects
   //console.log("Received: 'message' " + data);
 
-  data.shift();
-  data.shift();
-  data.shift();
+  // data.shift();
+  // data.shift();
+  // data.shift();
   avg = data;
 });
 
