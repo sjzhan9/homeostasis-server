@@ -111,7 +111,7 @@ io.on("connection", socket => {
         // move1.shift();
         //       //send averaged move 1 
         // let avg = averageMove(move1);
-        socket.emit('move1output', avg)
+        socket.emit('move1output', data)
       });
 
       socket.on('move2', function (data) {
