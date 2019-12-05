@@ -28,8 +28,6 @@ const sendMove = (x, y) => {
 //   } else {
 //     avg = "can not get";
 //   }
-
-  
 // });
 
 
