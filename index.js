@@ -107,10 +107,10 @@ io.on("connection", socket => {
     //trying to prcess data coming in from clients
     socket.on('move1', function (data) {
         console.log('move1 data is: ' + data);
-        move1.push(data);
-        move1.shift();
-              //send averaged move 1 
-        let avg = averageMove(move1);
+        // move1.push(data);
+        // move1.shift();
+        //       //send averaged move 1 
+        // let avg = averageMove(move1);
         socket.emit('move1output', avg)
       });
 

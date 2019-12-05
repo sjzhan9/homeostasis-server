@@ -11,14 +11,14 @@ const connection = new Connection("Homeo", "user");
 
 // Messages
 const sendMove1 = (x, y) => {
-  // connection.send("move1", x, y);
+  connection.send("move1", x, y);
   let data = y;
   connection.send1("move1", data);
 
 };
 
 //try to display value back on the phone
-connection.on('move1output', function (data) {
+connection.on('move1', function (data) {
   avg = data;
 });
 
