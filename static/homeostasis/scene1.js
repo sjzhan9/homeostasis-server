@@ -13,7 +13,7 @@ const connection = new Connection("Homeo", "user");
 const sendMove1 = (x, y) => {
   // connection.send("move1", x, y);
   let data = y;
-  connection.emit("move1", data);
+  connection.send1("move1", data);
 
 };
 
