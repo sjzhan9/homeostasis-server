@@ -23,6 +23,7 @@ connection.on('move', function (data) {
 
   data.shift();
   data.shift();
+  data.shift();
   avg = data;
 });
 
