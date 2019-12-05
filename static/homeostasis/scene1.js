@@ -17,20 +17,20 @@ const sendMove = (x, y) => {
 
 };
 
-connection.on('output', function (data) {
-  // Data comes in as whatever was sent, including objects
-  //console.log("Received: 'message' " + data);
-  if (data !== null){
-    // data.shift();
-    // data.shift();
-    // data.shift();
-    avg = data;
-  } else {
-    avg = "can not get";
-  }
+// connection.on('output', function (data) {
+//   // Data comes in as whatever was sent, including objects
+//   //console.log("Received: 'message' " + data);
+//   if (data !== null){
+//     // data.shift();
+//     // data.shift();
+//     // data.shift();
+//     avg = data;
+//   } else {
+//     avg = "can not get";
+//   }
 
   
-});
+// });
 
 
 
