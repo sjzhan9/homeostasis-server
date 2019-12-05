@@ -41,18 +41,10 @@ const routeMessages = socket => (packet, next) => {
         );
         return;
     }
-    // const x = packet.shift();
-    // if (typeof message !== "float") {
-    //     console.error(
-    //         "Received packet with invalid message type. X must be floats.",
-    //         "\n",
-    //         packet
-    //     );
-    //     return;
-    // }
+
 
     const y = packet.pop();
-    if (typeof message !== "float") {
+    if (typeof y !== "float") {
         console.error(
             "Received packet with invalid message type. Y must be floats.",
             "\n",
