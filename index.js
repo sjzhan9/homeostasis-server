@@ -55,7 +55,7 @@ const routeMessages = socket => (packet, next) => {
     //     return;
     // }
     //average y value;
-    // move1.shift();
+    move1.shift();
 
     move1.push(y);
 
