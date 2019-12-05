@@ -7,11 +7,14 @@ window.oncontextmenu = function (event) {
 
 
 // Setup connection
-const connection = new Connection("Bouncer", "user");
+const connection = new Connection("Homeo", "user");
 
 // Messages
-const sendMove = (x, y) => {
-  connection.send("move", x, y);
+const sendMove1 = (x, y) => {
+  // connection.send("move1", x, y);
+  let data = y;
+  connection.emit("move1", data);
+
 };
 
 // Lifecycle handlers
@@ -120,7 +123,7 @@ class SceneTwo {
       // sendMove(0, tb);
 
       if (sketch.frameCount % 12 == 0) {
-        sendMove(0, tb);
+        sendMove1(0, tb);
       }
 
     }

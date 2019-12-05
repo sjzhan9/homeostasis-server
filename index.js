@@ -14,29 +14,36 @@ io.origins("*:*");
 const namespace = io.of("/");
 const rooms = namespace.adapter.rooms;
 
-const routeMessages = socket => (packet, next) => {
-    const message = packet.shift();
-    if (typeof message !== "string") {
-        console.error(
-            "Received packet with invalid message type. Messages must be strings.",
-            "\n",
-            packet
-        );
-        return;
-    }
-    const room = packet.shift();
-    if (rooms[room] === undefined) {
-        console.warn(
-            "Received packet for non-existent room:",
-            room,
-            "\n",
-            packet
-        );
-        return;
-    }
-    socket.broadcast.to(room).emit(message, socket.id, ...packet);
-    next();
-};
+//Room Section Set Up
+let move1 = [];
+let move2 = [];
+let move3 = [];
+
+
+/////////// mattia's code//////////// 
+// const routeMessages = socket => (packet, next) => {
+//     const message = packet.shift();
+//     if (typeof message !== "string") {
+//         console.error(
+//             "Received packet with invalid message type. Messages must be strings.",
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+//     const room = packet.shift();
+//     if (rooms[room] === undefined) {
+//         console.warn(
+//             "Received packet for non-existent room:",
+//             room,
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+//     socket.broadcast.to(room).emit(message, socket.id, ...packet);
+//     next();
+// };
 
 const handleDisconnect = socket => reason => {
     console.log(
@@ -69,7 +76,7 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
-    socket.use(routeMessages(socket));
+    // socket.use(routeMessages(socket));
 
 
     // let the connecting client know about everyone else in the room
@@ -96,6 +103,37 @@ io.on("connection", socket => {
 
     console.log(`CONNECTING TO ${socket.room}: ${socket.type} (${socket.id})`);
 
+    //////////////////sj dec5 2019//////////////////////
+    //trying to prcess data coming in from clients
+    socket.on('move1', function (data) {
+        console.log('move1 data is: ' + data);
+        move1.push(data);
+        move1.shift();
+              //send averaged move 1 
+        let avg = averageMove(move1);
+        socket.emit('move1output', avg)
+      });
+
+      socket.on('move2', function (data) {
+        console.log('move2 data is: ' + data);
+        move2.push(data);
+        move2.shift();
+              //send averaged move 1 
+        let avg = averageMove(move2);
+        socket.emit('move2output', avg)
+      });
+
+      socket.on('move3', function (data) {
+        console.log('move3 data is: ' + data);
+        move3.push(data);
+        move3.shift();
+              //send averaged move 1 
+        let avg = averageMove(move3);
+        socket.emit('move3output', avg)
+      });
+
+
+    //////////////////sj dec5 2019 END//////////////////////
 
     // clean up on disconnection
     socket.on("disconnecting", handleDisconnect(socket));
@@ -103,3 +141,16 @@ io.on("connection", socket => {
 
 // START LISTENING
 server.listen(process.env.PORT || 5000);
+
+
+
+//average total of move1,2,3
+function averageMove(move){
+    let total = 0;
+    for (i in move){
+        total = total+move[i];
+    }
+    let avg = total / move.length;
+    return avg;
+}
+
