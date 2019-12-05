@@ -4,7 +4,7 @@ window.oncontextmenu = function (event) {
   return false;
 };
 
-
+let avg = 0;
 
 // Setup connection
 const connection = new Connection("Homeo", "user");
@@ -16,6 +16,11 @@ const sendMove1 = (x, y) => {
   connection.send1("move1", data);
 
 };
+
+//try to display value back on the phone
+connection.on('move1output', function (data) {
+  avg = data;
+});
 
 // Lifecycle handlers
 connection.onConnect(() => console.log("I connected with id:", connection.id));
@@ -81,6 +86,8 @@ class SceneTwo {
 
     sketch.draw = function () {
       sketch.background(0, 0, 100, 50);
+
+      text('avg is: ' + avg, 10,10);
 
       let tb = sketch.floor(sketch.rotationX);
 
