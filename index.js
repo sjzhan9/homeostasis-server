@@ -65,7 +65,7 @@ const routeMessages = socket => (packet, next) => {
 
     move1.push(y);
 
-            // send averaged move 1 
+    // send averaged move 1 
     let newY = averageMove(move1);
     packet.pop(newY);
 
