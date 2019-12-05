@@ -87,7 +87,7 @@ class SceneTwo {
     sketch.draw = function () {
       sketch.background(0, 0, 100, 50);
 
-      text('avg is: ' + avg, 10,10);
+      sketch.text('avg is: ' + avg, 10,10);
 
       let tb = sketch.floor(sketch.rotationX);
 
