@@ -41,17 +41,17 @@ const routeMessages = socket => (packet, next) => {
         );
         return;
     }
-    const x = packet.shift();
-    if (typeof message !== "float") {
-        console.error(
-            "Received packet with invalid message type. X must be floats.",
-            "\n",
-            packet
-        );
-        return;
-    }
+    // const x = packet.shift();
+    // if (typeof message !== "float") {
+    //     console.error(
+    //         "Received packet with invalid message type. X must be floats.",
+    //         "\n",
+    //         packet
+    //     );
+    //     return;
+    // }
 
-    const y = packet.shift();
+    const y = packet.pop();
     if (typeof message !== "float") {
         console.error(
             "Received packet with invalid message type. Y must be floats.",
@@ -61,12 +61,13 @@ const routeMessages = socket => (packet, next) => {
         return;
     }
     //average y value;
+        move1.shift();
+
     move1.push(y);
 
-    move1.shift();
-            //send averaged move 1 
+            // send averaged move 1 
     let newY = averageMove(move1);
-    let packet = [0, newY];
+    packet.pop(newY);
 
     socket.broadcast.to(room).emit(message, socket.id, ...packet);
     next();
