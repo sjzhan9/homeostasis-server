@@ -67,7 +67,7 @@ const routeMessages = socket => (packet, next) => {
 
     // send averaged move 1 
     let newY = averageMove(move1);
-    packet.pop(newY);
+    packet.push(newY);
 
     socket.broadcast.to(room).emit(message, socket.id, ...packet);
     next();
