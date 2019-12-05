@@ -10,17 +10,23 @@ let avg = 0;
 const connection = new Connection("Homeo", "user");
 
 // Messages
-const sendMove1 = (x, y) => {
-  connection.send("move1", x, y);
+const sendMove = (x, y) => {
+  connection.send("move", x, y);
   // let data = y;
   // connection.send1("move1", data);
 
 };
 
-//try to display value back on the phone
-connection.on('move1output', function (data) {
+connection.on('move', function (data) {
+  // Data comes in as whatever was sent, including objects
+  //console.log("Received: 'message' " + data);
+
+  data.shift();
+  data.shift();
   avg = data;
 });
+
+
 
 // Lifecycle handlers
 connection.onConnect(() => console.log("I connected with id:", connection.id));
@@ -130,7 +136,7 @@ class SceneTwo {
       // sendMove(0, tb);
 
       if (sketch.frameCount % 12 == 0) {
-        sendMove1(0, tb);
+        sendMove(0, tb);
       }
 
     }

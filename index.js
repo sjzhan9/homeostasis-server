@@ -41,6 +41,34 @@ const routeMessages = socket => (packet, next) => {
         );
         return;
     }
+    const x = packet.shift();
+    if (typeof message !== "float") {
+        console.error(
+            "Received packet with invalid message type. X must be floats.",
+            "\n",
+            packet
+        );
+        return;
+    }
+
+    const y = packet.shift();
+    if (typeof message !== "float") {
+        console.error(
+            "Received packet with invalid message type. Y must be floats.",
+            "\n",
+            packet
+        );
+        return;
+    }
+    //average y value;
+        move1.push(y);
+
+        move1.shift();
+              //send averaged move 1 
+        let newY = averageMove(move1);
+        let packet = (0, newY);
+
+
     socket.broadcast.to(room).emit(message, socket.id, ...packet);
     next();
 };
@@ -76,7 +104,7 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
-    // socket.use(routeMessages(socket));
+    socket.use(routeMessages(socket));
 
 
     // let the connecting client know about everyone else in the room
