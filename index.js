@@ -19,6 +19,8 @@ let move1 = [];
 let move2 = [];
 let move3 = [];
 
+let newY = 5;
+
 
 /////////// mattia's code//////////// 
 const routeMessages = socket => (packet, next) => {
@@ -43,7 +45,7 @@ const routeMessages = socket => (packet, next) => {
     }
 
 
-    // const y = packet.pop();
+    const y = packet.pop();
     // if (typeof y !== "float") {
     //     console.error(
     //         "Received packet with invalid message type. Y must be floats.",
@@ -52,14 +54,14 @@ const routeMessages = socket => (packet, next) => {
     //     );
     //     return;
     // }
-    // //average y value;
-    // // move1.shift();
+    //average y value;
+    // move1.shift();
 
-    // move1.push(y);
+    move1.push(y);
 
-    // // send averaged move 1 
-    // let newY = averageMove(move1);
-    // packet.push(newY);
+    // send averaged move 1 
+    newY = averageMove(move1);
+    packet.push(newY);
 
     socket.broadcast.to(room).emit(message, socket.id, ...packet);
     next();
