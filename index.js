@@ -21,29 +21,29 @@ let move3 = [];
 
 
 /////////// mattia's code//////////// 
-// const routeMessages = socket => (packet, next) => {
-//     const message = packet.shift();
-//     if (typeof message !== "string") {
-//         console.error(
-//             "Received packet with invalid message type. Messages must be strings.",
-//             "\n",
-//             packet
-//         );
-//         return;
-//     }
-//     const room = packet.shift();
-//     if (rooms[room] === undefined) {
-//         console.warn(
-//             "Received packet for non-existent room:",
-//             room,
-//             "\n",
-//             packet
-//         );
-//         return;
-//     }
-//     socket.broadcast.to(room).emit(message, socket.id, ...packet);
-//     next();
-// };
+const routeMessages = socket => (packet, next) => {
+    const message = packet.shift();
+    if (typeof message !== "string") {
+        console.error(
+            "Received packet with invalid message type. Messages must be strings.",
+            "\n",
+            packet
+        );
+        return;
+    }
+    const room = packet.shift();
+    if (rooms[room] === undefined) {
+        console.warn(
+            "Received packet for non-existent room:",
+            room,
+            "\n",
+            packet
+        );
+        return;
+    }
+    socket.broadcast.to(room).emit(message, socket.id, ...packet);
+    next();
+};
 
 const handleDisconnect = socket => reason => {
     console.log(
@@ -107,7 +107,7 @@ io.on("connection", socket => {
     //trying to prcess data coming in from clients
     socket.on('move1', function (data) {
         console.log('move1 data is: ' + data);
-        let newData = data[2];
+        let newData = data[6];
         // move1.push(data);
         // move1.shift();
         //       //send averaged move 1 
