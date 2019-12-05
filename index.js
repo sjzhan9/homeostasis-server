@@ -61,13 +61,12 @@ const routeMessages = socket => (packet, next) => {
         return;
     }
     //average y value;
-        move1.push(y);
+    move1.push(y);
 
-        move1.shift();
-              //send averaged move 1 
-        let newY = averageMove(move1);
-        let packet = (0, newY);
-
+    move1.shift();
+            //send averaged move 1 
+    let newY = averageMove(move1);
+    let packet = [0, newY];
 
     socket.broadcast.to(room).emit(message, socket.id, ...packet);
     next();
@@ -133,33 +132,33 @@ io.on("connection", socket => {
 
     //////////////////sj dec5 2019//////////////////////
     //trying to prcess data coming in from clients
-    socket.on('move1', function (data) {
-        console.log('move1 data is: ' + data);
-        let newData = data[6];
-        // move1.push(data);
-        // move1.shift();
-        //       //send averaged move 1 
-        // let avg = averageMove(move1);
-        socket.emit('move1output', newData)
-      });
+    // socket.on('move1', function (data) {
+    //     console.log('move1 data is: ' + data);
+    //     let newData = data[6];
+    //     // move1.push(data);
+    //     // move1.shift();
+    //     //       //send averaged move 1 
+    //     // let avg = averageMove(move1);
+    //     socket.emit('move1output', newData)
+    //   });
 
-      socket.on('move2', function (data) {
-        console.log('move2 data is: ' + data);
-        move2.push(data);
-        move2.shift();
-              //send averaged move 1 
-        let avg = averageMove(move2);
-        socket.emit('move2output', avg)
-      });
+    //   socket.on('move2', function (data) {
+    //     console.log('move2 data is: ' + data);
+    //     move2.push(data);
+    //     move2.shift();
+    //           //send averaged move 1 
+    //     let avg = averageMove(move2);
+    //     socket.emit('move2output', avg)
+    //   });
 
-      socket.on('move3', function (data) {
-        console.log('move3 data is: ' + data);
-        move3.push(data);
-        move3.shift();
-              //send averaged move 1 
-        let avg = averageMove(move3);
-        socket.emit('move3output', avg)
-      });
+    //   socket.on('move3', function (data) {
+    //     console.log('move3 data is: ' + data);
+    //     move3.push(data);
+    //     move3.shift();
+    //           //send averaged move 1 
+    //     let avg = averageMove(move3);
+    //     socket.emit('move3output', avg)
+    //   });
 
 
     //////////////////sj dec5 2019 END//////////////////////
