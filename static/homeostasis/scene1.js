@@ -4,7 +4,7 @@ window.oncontextmenu = function (event) {
   return false;
 };
 
-let avg = 0;
+let avg = "no val";
 
 // Setup connection
 const connection = new Connection("Homeo", "user");
