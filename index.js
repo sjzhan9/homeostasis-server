@@ -179,7 +179,7 @@ function averageMove(move){
     for (i in move){
         total = total+move[i];
     }
-    let avg = total / move.length;
+    let avg = total / (move.length + 1);
     return avg;
 }
 

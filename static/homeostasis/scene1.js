@@ -26,7 +26,7 @@ connection.on('output', function (data) {
     // data.shift();
     avg = data;
   } else {
-    avg = "can not get"
+    avg = "can not get";
   }
 
   
