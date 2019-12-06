@@ -163,6 +163,23 @@ io.on("connection", socket => {
     console.log(`CONNECTING TO ${socket.room}: ${socket.type} (${socket.id})`);
 
     //////////////////sj dec5 2019//////////////////////
+
+    setInterval(function(){
+        console.log("***********send avg"); 
+        let avg1 = averageMove(move1);
+        console.log("avg1 is" + avg1); 
+        socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
+        console.log("emited")
+    
+        let avg2 = averageMove(move2);
+        console.log("avg2 is" + avg2); 
+        socket.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
+    
+        let avg3 = averageMove(move3);           
+        console.log("avg3 is" + avg3); 
+        socket.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
+    
+     }, 1000);
     //trying to prcess data coming in from clients
 
     // socket.on('move1', function (packet) {
@@ -201,21 +218,7 @@ io.on("connection", socket => {
     //   });
 
 
-      setInterval(function(){
-           console.log("***********send avg"); 
-           let avg1 = averageMove(move1);
-           console.log("avg1 is" + avg1); 
-           socket.broadcast.to("Homeo").emit("move1", 1, 0, avg1);
 
-           let avg2 = averageMove(move2);
-           console.log("avg2 is" + avg2); 
-           socket.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
-
-           let avg3 = averageMove(move3);           
-           console.log("avg3 is" + avg3); 
-           socket.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
-
-        }, 1000);
 
 
 
@@ -224,6 +227,7 @@ io.on("connection", socket => {
     // clean up on disconnection
     socket.on("disconnecting", handleDisconnect(socket));
 });
+
 
 // START LISTENING
 server.listen(process.env.PORT || 5000);
@@ -236,7 +240,7 @@ function averageMove(move){
     for (i in move){
         total = total+move[i];
     }
-    let avg = total / (move.length);
+    let avg = total / (move.length+1);
     return avg;
 }
 

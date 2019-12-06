@@ -18,18 +18,28 @@ const sendMove = (x, y) => {
 
 };
 
-// connection.on('output', function (data) {
-//   // Data comes in as whatever was sent, including objects
-//   //console.log("Received: 'message' " + data);
-//   if (data !== null){
-//     // data.shift();
-//     // data.shift();
-//     // data.shift();
-//     avg = data;
-//   } else {
-//     avg = "can not get";
-//   }
-// });
+connection.on('move1output', function (data) {
+  // Data comes in as whatever was sent, including objects
+  console.log("Received: 'message' " + data);
+  const message = data.shift();
+    if (typeof message !== "string") {
+        console.error(
+            "Received packet with invalid message type. Messages must be strings.",
+            "\n",
+            packet
+        );
+        return;
+    }
+    
+  if (data !== null){
+    // data.shift();
+    // data.shift();
+    // data.shift();
+    avg = data[0];
+  } else {
+    avg = "can not get";
+  }
+});
 
 
 
