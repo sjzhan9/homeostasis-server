@@ -166,25 +166,25 @@ io.on("connection", socket => {
 
     //////////////////sj dec5 2019//////////////////////
 
-    setInterval(function(){
-        console.log("***********send avg"); 
-        let avg1 = averageMove(move1);
-        console.log("avg1 is" + avg1); 
-        // socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
-        // socket.emit("move1output",'user no.' + move1.length + 'and avg is' + avg1);
-        socket.emit("move1output",1, 0, avg1);
+    // setInterval(function(){
+    //     console.log("***********send avg"); 
+    //     let avg1 = averageMove(move1);
+    //     console.log("avg1 is" + avg1); 
+    //     // socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
+    //     // socket.emit("move1output",'user no.' + move1.length + 'and avg is' + avg1);
+    //     socket.emit("move1output",1, 0, avg1);
 
-        console.log("emited")
+    //     console.log("emited")
     
-        let avg2 = averageMove(move2);
-        console.log("avg2 is" + avg2); 
-        socket.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
+    //     let avg2 = averageMove(move2);
+    //     console.log("avg2 is" + avg2); 
+    //     socket.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
     
-        let avg3 = averageMove(move3);           
-        console.log("avg3 is" + avg3); 
-        socket.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
+    //     let avg3 = averageMove(move3);           
+    //     console.log("avg3 is" + avg3); 
+    //     socket.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
     
-     }, 1000);
+    //  }, 1000);
     //trying to prcess data coming in from clients
 
     // socket.on('move1', function (packet) {
@@ -233,6 +233,25 @@ io.on("connection", socket => {
     socket.on("disconnecting", handleDisconnect(socket));
 });
 
+setInterval(function(){
+    console.log("***********send avg"); 
+    let avg1 = averageMove(move1);
+    console.log("avg1 is" + avg1); 
+    // socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
+    // socket.emit("move1output",'user no.' + move1.length + 'and avg is' + avg1);
+    io.emit("move1output",1, 0, avg1);
+
+    console.log("emited")
+
+    let avg2 = averageMove(move2);
+    console.log("avg2 is" + avg2); 
+    // io.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
+
+    let avg3 = averageMove(move3);           
+    console.log("avg3 is" + avg3); 
+    // io.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
+
+ }, 1000);
 
 // START LISTENING
 server.listen(process.env.PORT || 5000);
