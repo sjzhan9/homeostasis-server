@@ -169,6 +169,7 @@ io.on("connection", socket => {
         let avg1 = averageMove(move1);
         console.log("avg1 is" + avg1); 
         socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
+        socket.emit("move1output", "Homeo", avg1);
         console.log("emited")
     
         let avg2 = averageMove(move2);
