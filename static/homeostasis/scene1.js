@@ -32,7 +32,8 @@ connection.on('move1output', function (data) {
         );
         return;
     }
-    
+    avg = message;
+
   if (data !== null){
     // data.shift();
     // data.shift();
