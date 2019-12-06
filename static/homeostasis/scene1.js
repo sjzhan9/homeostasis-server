@@ -5,6 +5,7 @@ window.oncontextmenu = function (event) {
 };
 
 let avg = "no val";
+let j = 0;
 
 // Setup connection
 const connection = new Connection("Homeo", "user");
@@ -96,6 +97,10 @@ class SceneTwo {
 
     sketch.draw = function () {
       sketch.background(0, 0, 100, 50);
+
+      // sendMove(0, j);
+      // j++;
+
 
       sketch.text('avg is: ' + avg, 10,10);
 

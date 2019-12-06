@@ -16,14 +16,15 @@ const rooms = namespace.adapter.rooms;
 
 //Room Section Set Up
 let move1 = [];
-let move2 = [];
-let move3 = [];
+let move2 = [0];
+let move3 = [0];
 
 let newY = 5;
 
 
-/////////// mattia's code//////////// 
+
 const routeMessages = socket => (packet, next) => {
+    // console.log("incoming");
     const message = packet.shift();
     if (typeof message !== "string") {
         console.error(
@@ -46,25 +47,62 @@ const routeMessages = socket => (packet, next) => {
 
 
     const y = packet.pop();
-    // if (typeof y !== "float") {
-    //     console.error(
-    //         "Received packet with invalid message type. Y must be floats.",
-    //         "\n",
-    //         packet
-    //     );
-    //     return;
-    // }
-    //average y value;
-    move1.shift();
-    move1.push(y);
+    // console.log(room);
 
-    // send averaged move 1 
-    newY = averageMove(move1);
-    packet.push(newY);
 
-    socket.broadcast.to(room).emit(message, socket.id, ...packet);
+    if (message == "move1"){
+
+        move1.shift();
+        move1.push(y);
+    }
+
     next();
 };
+
+
+/////////// mattia's code//////////// 
+// const routeMessages = socket => (packet, next) => {
+//     const message = packet.shift();
+//     if (typeof message !== "string") {
+//         console.error(
+//             "Received packet with invalid message type. Messages must be strings.",
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+//     const room = packet.shift();
+//     if (rooms[room] === undefined) {
+//         console.warn(
+//             "Received packet for non-existent room:",
+//             room,
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+
+
+//     const y = packet.pop();
+//     // if (typeof y !== "float") {
+//     //     console.error(
+//     //         "Received packet with invalid message type. Y must be floats.",
+//     //         "\n",
+//     //         packet
+//     //     );
+//     //     return;
+//     // }
+//     //average y value;
+//     move1.shift();
+//     move1.push(y);
+
+//     // send averaged move 1 
+//     newY = averageMove(move1);
+//     packet.push(newY);
+
+//     socket.broadcast.to(room).emit(message, socket.id, ...packet);
+//     next();
+// };
 
 const handleDisconnect = socket => reason => {
     console.log(
@@ -97,7 +135,7 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
-    // socket.use(routeMessages(socket));
+    socket.use(routeMessages(socket));
 
 
     // let the connecting client know about everyone else in the room
@@ -126,45 +164,56 @@ io.on("connection", socket => {
 
     //////////////////sj dec5 2019//////////////////////
     //trying to prcess data coming in from clients
-    socket.on('move1', function (packet) {
-        console.log('move1 data is: ' + packet);
-        let y = packet.pop();
-        console.log("y1" + y); 
 
-        move1.push(y);
-        move1.shift();
-      });
+    // socket.on('move1', function (packet) {
+        
+    //     console.log('move1 data is: ' + packet);
+    //     packet.shift();
+    //     packet.shift();
+    //     const y = packet.pop();
+    //     console.log("y1" + y); 
 
-      socket.on('move2', function (packet) {
-        console.log('move2 data is: ' + packet);
-        let y = packet.pop();
-        console.log("y2" + y); 
+    //     move1.push(y);
+    //     move1.shift();
+    //   });
 
-        move2.push(y);
-        move2.shift();
-      });
+    //   socket.on('move2', function (packet) {
+    //     console.log('move2 data is: ' + packet);
+    //     packet.shift();
+    //     packet.shift();
 
-      socket.on('move3', function (packet) {
-        console.log('move3 data is: ' + packet);
-        let y = packet.pop();
-        console.log("y3" + y); 
-        move3.push(y);
-        move3.shift();
-      });
+    //     let y = packet.pop();
+    //     console.log("y2" + y); 
+
+    //     move2.push(y);
+    //     move2.shift();
+    //   });
+
+    //   socket.on('move3', function (packet) {
+    //     console.log('move3 data is: ' + packet);
+    //     packet.shift();
+    //     packet.shift();
+
+    //     let y = packet.pop();
+    //     console.log("y3" + y); 
+    //     move3.push(y);
+    //     move3.shift();
+    //   });
+
 
       setInterval(function(){
-           console.log("send avg"); 
+           console.log("***********send avg"); 
            let avg1 = averageMove(move1);
            console.log("avg1 is" + avg1); 
-           socket.broadcast.to(room).emit(message, 1, 0, avg1);
+           socket.broadcast.to("Homeo").emit("move1", 1, 0, avg1);
 
            let avg2 = averageMove(move2);
-           console.log("avg2 is" + avg2; 
-           socket.broadcast.to(room).emit(message, 2, 0, avg2);
+           console.log("avg2 is" + avg2); 
+           socket.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
 
            let avg3 = averageMove(move3);           
-           console.log("avg3 is" + avg3; 
-           socket.broadcast.to(room).emit(message, 3, 0, avg3);
+           console.log("avg3 is" + avg3); 
+           socket.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
 
         }, 1000);
 
