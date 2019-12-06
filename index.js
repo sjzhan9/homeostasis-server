@@ -56,7 +56,6 @@ const routeMessages = socket => (packet, next) => {
     // }
     //average y value;
     move1.shift();
-
     move1.push(y);
 
     // send averaged move 1 
@@ -98,7 +97,7 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
-    socket.use(routeMessages(socket));
+    // socket.use(routeMessages(socket));
 
 
     // let the connecting client know about everyone else in the room
@@ -127,33 +126,48 @@ io.on("connection", socket => {
 
     //////////////////sj dec5 2019//////////////////////
     //trying to prcess data coming in from clients
-    // socket.on('move1', function (data) {
-    //     console.log('move1 data is: ' + data);
-    //     let newData = data[6];
-    //     // move1.push(data);
-    //     // move1.shift();
-    //     //       //send averaged move 1 
-    //     // let avg = averageMove(move1);
-    //     socket.emit('move1output', newData)
-    //   });
+    socket.on('move1', function (packet) {
+        console.log('move1 data is: ' + packet);
+        let y = packet.pop();
+        console.log("y1" + y); 
 
-    //   socket.on('move2', function (data) {
-    //     console.log('move2 data is: ' + data);
-    //     move2.push(data);
-    //     move2.shift();
-    //           //send averaged move 1 
-    //     let avg = averageMove(move2);
-    //     socket.emit('move2output', avg)
-    //   });
+        move1.push(y);
+        move1.shift();
+      });
 
-    //   socket.on('move3', function (data) {
-    //     console.log('move3 data is: ' + data);
-    //     move3.push(data);
-    //     move3.shift();
-    //           //send averaged move 1 
-    //     let avg = averageMove(move3);
-    //     socket.emit('move3output', avg)
-    //   });
+      socket.on('move2', function (packet) {
+        console.log('move2 data is: ' + packet);
+        let y = packet.pop();
+        console.log("y2" + y); 
+
+        move2.push(y);
+        move2.shift();
+      });
+
+      socket.on('move3', function (packet) {
+        console.log('move3 data is: ' + packet);
+        let y = packet.pop();
+        console.log("y3" + y); 
+        move3.push(y);
+        move3.shift();
+      });
+
+      setInterval(function(){
+           console.log("send avg"); 
+           let avg1 = averageMove(move1);
+           console.log("avg1 is" + avg1); 
+           socket.broadcast.to(room).emit(message, 1, 0, avg1);
+
+           let avg2 = averageMove(move2);
+           console.log("avg2 is" + avg2; 
+           socket.broadcast.to(room).emit(message, 2, 0, avg2);
+
+           let avg3 = averageMove(move3);           
+           console.log("avg3 is" + avg3; 
+           socket.broadcast.to(room).emit(message, 3, 0, avg3);
+
+        }, 1000);
+
 
 
     //////////////////sj dec5 2019 END//////////////////////
@@ -173,7 +187,7 @@ function averageMove(move){
     for (i in move){
         total = total+move[i];
     }
-    let avg = total / (move.length + 1);
+    let avg = total / (move.length);
     return avg;
 }
 

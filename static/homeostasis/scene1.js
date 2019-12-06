@@ -11,7 +11,7 @@ const connection = new Connection("Homeo", "user");
 
 // Messages
 const sendMove = (x, y) => {
-  connection.send("move", x, y);
+  connection.send("move1", x, y);
   // let data = y;
   // connection.send1("move1", data);
 
