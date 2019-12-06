@@ -38,7 +38,7 @@ connection.on('move1output', function (data) {
     // data.shift();
     // data.shift();
     // data.shift();
-    avg = data[0];
+    avg = data[1];
   } else {
     avg = "can not get";
   }
