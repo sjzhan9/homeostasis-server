@@ -15,7 +15,7 @@ const namespace = io.of("/");
 const rooms = namespace.adapter.rooms;
 
 //Room Section Set Up
-let move1 = [0];
+let move1 = [];
 let move2 = [0];
 let move3 = [0];
 
@@ -135,6 +135,8 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
+    move1.push(0);
+
     socket.use(routeMessages(socket));
 
 
