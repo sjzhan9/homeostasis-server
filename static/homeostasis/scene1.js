@@ -20,6 +20,8 @@ const sendMove = (x, y) => {
 
 connection.on('move1output', function (data) {
   // Data comes in as whatever was sent, including objects
+  avg = "listening";
+
   console.log("Received: 'message' " + data);
   const message = data.shift();
     if (typeof message !== "string") {
