@@ -22,7 +22,6 @@ connection.on('move1output', function (data) {
   // Data comes in as whatever was sent, including objects
 
   console.log("Received: 'message' " + data);
-  avg = data;
 
   const message = data.shift();
     if (typeof message !== "string") {
@@ -38,7 +37,7 @@ connection.on('move1output', function (data) {
     // data.shift();
     // data.shift();
     // data.shift();
-    avg = data[1];
+    avg = data[2];
   } else {
     avg = "can not get";
   }
