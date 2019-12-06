@@ -15,7 +15,7 @@ const namespace = io.of("/");
 const rooms = namespace.adapter.rooms;
 
 //Room Section Set Up
-let move1 = [];
+let move1 = [0];
 let move2 = [0];
 let move3 = [0];
 
@@ -169,7 +169,7 @@ io.on("connection", socket => {
         let avg1 = averageMove(move1);
         console.log("avg1 is" + avg1); 
         // socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
-        socket.emit("move1output",avg1);
+        socket.emit("move1output",'user no.${move1.length} and avg is ${avg1}');
         console.log("emited")
     
         let avg2 = averageMove(move2);
@@ -241,7 +241,7 @@ function averageMove(move){
     for (i in move){
         total = total+move[i];
     }
-    let avg = total / (move.length+1);
+    let avg = total / move.length;
     return avg;
 }
 
