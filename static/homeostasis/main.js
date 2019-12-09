@@ -7,7 +7,7 @@ if (typeof DeviceOrientationEvent.requestPermission === 'function') {
   }
 
 // Setup connection
-const connection = new Connection("Bouncer", "user");
+const connection = new Io();
 
 // Messages
 const sendMove = (x, y) => {

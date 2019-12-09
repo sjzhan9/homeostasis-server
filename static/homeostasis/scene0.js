@@ -9,7 +9,6 @@ class SceneOne {
     this.render = this.render.bind(this);
   }
 
-
   render(sketch) {
     sketch.setup = function () {
       var canvas0 = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);

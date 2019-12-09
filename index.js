@@ -14,50 +14,79 @@ io.origins("*:*");
 const namespace = io.of("/");
 const rooms = namespace.adapter.rooms;
 
-//Room Section Set Up
-let move1 = [];
+const bodyParser = require('body-parser');
+const express = require('express');
+const expressApp = express();
+const webServer = require("http").Server(expressApp);
+const webIo = require("socket.io")(webServer);
+let webPort = 8080;
+webServer.listen(webPort, () => console.log('listening on port ' + webPort));
+
+expressApp.set('views', __dirname + "/static/homeostasis");
+expressApp.engine('.html', require('ejs').__express);
+expressApp.set("view engine", "html");
+expressApp.use(express.static(__dirname + "/static/homeostasis"));
+
+expressApp.use(bodyParser.json());
+
+let move1 = [0];
 let move2 = [0];
 let move3 = [0];
 
-let newY = 5;
+webIo.on("connection", function(socket){
+   console.log('socket connected');
+
+   socket.on('test', function(data){
+       console.log("in test, received " + data);
+   });
+
+   socket.on("move1", function(data){
+       // console.log("received " + data.x + " and " + data.y);
+       move1.shift();
+       move1.push(data.y);
+   })
+});
 
 
+//Room Section Set Up
 
-const routeMessages = socket => (packet, next) => {
-    // console.log("incoming");
-    const message = packet.shift();
-    if (typeof message !== "string") {
-        console.error(
-            "Received packet with invalid message type. Messages must be strings.",
-            "\n",
-            packet
-        );
-        return;
-    }
-    const room = packet.shift();
-    if (rooms[room] === undefined) {
-        console.warn(
-            "Received packet for non-existent room:",
-            room,
-            "\n",
-            packet
-        );
-        return;
-    }
+let port = process.env.PORT || 5000;
 
-
-    const y = packet.pop();
-    // console.log(room);
-
-
-    if (message == "move1"){
-
-        move1.shift();
-        move1.push(y);
-    }
-
-    next();
-};
+// const routeMessages = socket => (packet, next) => {
+//     // console.log("incoming");
+//     const message = packet.shift();
+//     if (typeof message !== "string") {
+//         console.error(
+//             "Received packet with invalid message type. Messages must be strings.",
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+//     const room = packet.shift();
+//     if (rooms[room] === undefined) {
+//         console.warn(
+//             "Received packet for non-existent room:",
+//             room,
+//             "\n",
+//             packet
+//         );
+//         return;
+//     }
+//
+//
+//     const y = packet.pop();
+//     // console.log(room);
+//
+//
+//     if (message == "move1"){
+//
+//         move1.shift();
+//         move1.push(y);
+//     }
+//
+//     next();
+// };
 
 
 /////////// mattia's code//////////// 
@@ -116,14 +145,19 @@ const handleDisconnect = socket => reason => {
 io.on("connection", socket => {
     const query = socket.handshake.query;
 
+
     if (query === undefined) {
         console.warn("Socket tried to connect without query");
         return;
     }
 
     if (query.room === undefined) {
+
+        console.log(query);
+
         console.warn("Socket tried to connect without specifying a room");
         return;
+
     }
     socket.room = query.room;
 
@@ -135,9 +169,8 @@ io.on("connection", socket => {
 
     // Join the room...
     socket.join(socket.room);
-    move1.push(0);
 
-    socket.use(routeMessages(socket));
+    // socket.use(routeMessages(socket));
 
 
     // let the connecting client know about everyone else in the room
@@ -234,29 +267,32 @@ io.on("connection", socket => {
 });
 
 setInterval(function(){
-    console.log("***********send avg"); 
+   // console.log("***********send avg");
     let avg1 = averageMove(move1);
-    console.log("avg1 is" + avg1); 
+   // console.log("avg1 is" + avg1);
     // socket.broadcast.to("Homeo").emit("move1output", 1, 0, avg1);
     // socket.emit("move1output",'user no.' + move1.length + 'and avg is' + avg1);
-    io.emit("move1output",1, 0, avg1);
+    clientOne.emit("move1output",1, 0, avg1);
 
-    console.log("emited")
+   // console.log("emited")
 
     let avg2 = averageMove(move2);
-    console.log("avg2 is" + avg2); 
+  //  console.log("avg2 is" + avg2);
     // io.broadcast.to("Homeo").emit("move2", 2, 0, avg2);
 
     let avg3 = averageMove(move3);           
-    console.log("avg3 is" + avg3); 
+  //  console.log("avg3 is" + avg3);
     // io.broadcast.to("Homeo").emit("move3", 3, 0, avg3);
 
  }, 1000);
 
 // START LISTENING
-server.listen(process.env.PORT || 5000);
+server.listen(port, () => console.log('listening on port ' + port));
 
-
+const ioClient = require('socket.io-client');
+const clientOne = ioClient("http://localhost:" + port, {query: {room: "Homeo", type: "user" }});
+const clientTwo = ioClient("http://localhost:" + port, {query: {room: "Homeo", type: "user" }});
+const clientThree = ioClient("http://localhost:" + port, {query: {room: "Homeo", type: "user" }});
 
 //average total of move1,2,3
 function averageMove(move){

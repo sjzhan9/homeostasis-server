@@ -7,15 +7,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" href="homeostasis/style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body onload="onLoad()">
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/common/connection.js"></script>
-    <script src="/homeostasis/scene0.js"></script>
-    <script src="/homeostasis/scene1.js"></script>
-    <script src="/homeostasis/ui.js"></script>
+    <script src="scene0.js"></script>
+    <script src="scene1.js"></script>
+    <script src="ui.js"></script>
 
 
     <div id="view1" class="homeostasis center flex-center scene1">
@@ -64,7 +63,7 @@
 
     <div id="view3" class="homeostasis center flex-center scene1">
         <h1 id="v3-title">SEA</h1>
-        <img id="v3-img" src="/homeostasis/assets/phone.png"
+        <img id="v3-img" src="assets/phone.png"
             style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
         <p id="v3-p" style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
     </div>

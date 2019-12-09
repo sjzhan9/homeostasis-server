@@ -8,15 +8,26 @@ let avg = "no val";
 let j = 0;
 
 // Setup connection
-const connection = new Connection("Homeo", "user");
+const connection = new io();
 
 // Messages
 const sendMove = (x, y) => {
-  connection.send("move1", x, y);
+  connection.emit("move1", {
+    x: x,
+    y: y
+  });
   // let data = y;
   // connection.send1("move1", data);
 
 };
+
+setInterval(function(){
+
+    sendMove(10, 20);
+
+
+    console.log('send move');
+}, 1000);
 
 connection.on('move1output', function (data) {
   // Data comes in as whatever was sent, including objects
@@ -44,24 +55,15 @@ connection.on('move1output', function (data) {
   }
 });
 
-
-
 // Lifecycle handlers
-connection.onConnect(() => console.log("I connected with id:", connection.id));
 
-connection.onDisconnect(() => {
-  console.log("I disconnected with id:", connection.id);
+connection.on("connect", function(client){
+    console.log("I connected with id:", connection.id);
 });
 
-connection.onOtherConnect((otherId, type) => {
-  console.log(type, "connected:", otherId);
+connection.on("disconnect", function(client){
+    console.log("I disconnected with id:", connection.id);
 });
-
-connection.onOtherDisconnect((otherId, type) => {
-  console.log(type, "disconnected:", otherId);
-  if (type === "app") {}
-});
-
 
 //p5
 
@@ -78,7 +80,7 @@ class SceneTwo {
     let lineHeight = 10;
 
     sketch.preload = function () {
-      waveJ = sketch.loadSound("/homeostasis/assets/wave.mp3");
+      waveJ = sketch.loadSound("assets/wave.mp3");
     }
 
     sketch.setup = function () {
