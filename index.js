@@ -19,7 +19,9 @@ const express = require('express');
 const expressApp = express();
 const webServer = require("http").Server(expressApp);
 const webIo = require("socket.io")(webServer);
-let webPort = 8080;
+let webPort = process.env.PORT || 8080;
+
+
 webServer.listen(webPort, () => console.log('listening on port ' + webPort));
 
 expressApp.set('views', __dirname + "/static/homeostasis");
@@ -50,7 +52,7 @@ webIo.on("connection", function(socket){
 
 //Room Section Set Up
 
-let port = process.env.PORT || 5000;
+let port = 5000;
 
 // const routeMessages = socket => (packet, next) => {
 //     // console.log("incoming");
