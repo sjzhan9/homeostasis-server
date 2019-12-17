@@ -8,39 +8,46 @@ window.oncontextmenu = function(event) {
 
 //p5
 
+class SceneTwo {
+  constructor() {
+    this.render = this.render.bind(this);
+  }
+
+  render(sketch) {
+
 let lineHeight2 = 10;
 
 
 
-function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight);
+ sketch.setup = function() {
+  var canvas = sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
 
     // Move the canvas so it’s inside our <div id="sketch-holder">.
-  canvas.parent('sketch-holder1');
+  canvas.parent('sketch-holder2');
 
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     document.body.addEventListener('click', function() {
       DeviceOrientationEvent.requestPermission();
       DeviceMotionEvent.requestPermission();
 
-      getAudioContext().resume();
+      sketch.getAudioContext().resume();
 
     });
   }
 
-  colorMode(HSB, 360, 100, 100, 100);
-  noStroke();
+  sketch.colorMode(sketch.HSB, 360, 100, 100, 100);
+  sketch.noStroke();
 
-  lineHeight2 = windowHeight / 30;
+  lineHeight2 = sketch.windowHeight / 30;
 
 }
 
-function draw() {
-  background(0, 0, 100, 50);
+sketch.draw = function() {
+  sketch.background(0, 0, 100, 50);
 
-  let tb = floor(rotationX);
+  let tb = sketch.floor(sketch.rotationX);
 
-  let newAmp = map(abs(tb), 0, 180, 0, 1);
+  let newAmp = sketch.map(sketch.abs(tb), 0, 180, 0, 1);
 
  
 
@@ -53,7 +60,7 @@ function draw() {
   }
 
   // between -90 and 90
-  let centerIndex = int(map(tb, -90, 90, 0, 10));
+  let centerIndex = sketch.int(sketch.map(tb, -90, 90, 0, 10));
 
   for (let i = 0; i < 10; i++) {
     let satVal = 0;
@@ -65,12 +72,12 @@ function draw() {
       satVal = (i - centerIndex) * 10;
       blueVal += (i - centerIndex) * 5;
     }
-    fill(220, satVal, 100, 80);
-    rect(0, i * lineHeight, width, lineHeight);
+    sketch.fill(220, satVal, 100, 80);
+    sketch.rect(0, i * sketch.lineHeight, sketch.width, sketch.lineHeight);
   }
 
-  fill(0, 100, 100);
-  text(tb, width / 2, height / 2);
+  sketch.fill(0, 100, 100);
+  sketch.text(tb, sketch.width / 2, sketch.height / 2);
   
   // sendMove(0, tb);
 
@@ -78,6 +85,9 @@ function draw() {
 
 }
 
-function touchStarted() {
-  getAudioContext().resume();
+sketch.touchStarted = function() {
+  sketch.getAudioContext().resume();
+}
+
+  }
 }

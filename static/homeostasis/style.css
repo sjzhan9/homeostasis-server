@@ -1,10 +1,11 @@
 body {
     margin: 0px;
+    font-family: 'Lexend Deca', sans-serif;
+
 }
 
 .homeostasis {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     margin-left: auto;
     margin-right: auto;
     width: 100vw;
@@ -24,23 +25,23 @@ body {
     border: none;
 
 
-    font-style: normal;
+    font-family: 'Lexend Deca', sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
     align-items: center;
     text-align: center;
 
-    margin-bottom: 40px;
+    margin: 24px;
 }
 
 .homeostasis h1 {
 
-    font-size: 32spx;
+    font-size: 30px;
     line-height: 48px;
     text-align: center;
-    margin-top: 60px;
-    margin-top: 40px;
+    margin: 10px 10px 40px 10px;
+    letter-spacing: -0.01em;
 
 }
 
@@ -51,12 +52,27 @@ body {
     line-height: 19px;
     text-align: center;
     color: rgba(255, 255, 255, 0.74);
+    margin: 20px;
+
 }
 
 .flex-center {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flex-spread {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
 
 .center {
@@ -65,25 +81,21 @@ body {
     text-align: center;
 }
 
-.float-card {
-    background: #3086DD;
-    /* card-shadow */
-    box-shadow: 0px -4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 24px 24px 0px 0px;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
-
 .scene1 {
-    background: linear-gradient(177.17deg, #5DB5F5 15.84%, #69AEFF 61.26%, #177DDB 93.69%);
-}
+    background: linear-gradient(177.17deg, #206495 15.84%, #2F64A1 61.26%, #15436C 93.69%);}
 
 #view1 {
     background-color: rgb(219, 219, 219);
 }
-
-
+#view1 p{
+    margin-bottom: 50px;
+    line-height: 24px;
+}
+#view1 button{
+    border: solid 1px white;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+}
 
 #view2 {
     color: rgb(31, 31, 31);
@@ -98,12 +110,19 @@ body {
     right: 10vw;
 }
 
-#v2-title {
+#view2 h1{
+    font-size: 35px;
     left: 10vw;
     right: 10vw;
+    letter-spacing: -2.5px;
+    line-height: 50px;
+    padding: 26px 0px 0px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-bottom: 24px;
     animation-name: v2-title;
     animation-duration: 10s;
-    
+    text-align: left;
 }
 
 @keyframes v2-title {
@@ -123,17 +142,13 @@ body {
 
 }
 
-
-
 .step-column {
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-
-
+    margin-bottom: 28px;
 }
 
 .step-container {
@@ -144,21 +159,18 @@ body {
 }
 
 .step-number {
-
     position: relative;
-    width: 40px;
-    height: 40px;
-
-    border: 2px solid #333333;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #0000001f;
     box-sizing: border-box;
-    border-radius: 20px;
-    margin: 16px;
-
-
+    border-radius: 18px;
+    margin: 16px 16px 16px 0px;
+    flex: none;
     font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 36px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 34px;
     align-items: center;
     text-align: center;
 }
@@ -171,16 +183,14 @@ body {
     bottom: 0%;
 
     font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0px;
+    font-size: 15px;
     line-height: 19px;
     display: flex;
     text-align: left;
     color: #333333;
 }
-
-
-
 
 #v2-i1 {
     animation-name: v2-i1;
@@ -285,42 +295,85 @@ body {
     }
 }
 
-#v2-button {
-    position: absolute;
-    left: 10vw;
-    right: 10vw;
-    bottom: 20px;
+#set-up-ready {
     animation-name: v2-b;
     animation-duration: 10s;
 }
 
+#selectRoom {
+    background: linear-gradient(180deg, #2A4245 0%, rgba(19, 56, 64, 0.86) 100%), 
+    linear-gradient(0deg, rgba(5, 39, 63, 0.14), rgba(5, 39, 63, 0.14));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+#selectRoom h2 {
+    letter-spacing: -2px;
+}
 
+#selectRoomDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
 
+#selectRoomDiv .room-item{
+    min-height: 140px;
+    height: 30vw;
+    max-height: 180px;
+    margin: 5px;
+    border-radius: 0px;
+    background-color: rgba(240, 255, 255, 0.247);
+}
 
-#v3-title {
+#selectRoomDiv .room-item.room-side{
+    min-width: 40px;
+    width: 25vw;
+    max-width: 160px;
+}
+
+#selectRoomDiv .room-item.room-center{
+    min-width: 60px;
+    width: 35vw;
+    max-width: 200px;
+
+}
+
+/**************** VIEW3 *************** */
+
+.trans{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trans-title {
     position: absolute;
     left: 40vw;
     right: 40vw;
     text-align: center;
     animation-name: v3-title;
-    animation-duration: 6s;
+    animation-duration: 2s;
 }
 
-
-
-#v3-img {
+.trans-img {
     animation-name: v3-img;
-    animation-duration: 6s;
+    animation-duration: 2s;
 }
 
-#v3-p {
+.trans-p {
     position: absolute;
     left: 15vw;
     right: 15vw;
     text-align: center;
     animation-name: v3-p;
-    animation-duration: 6s;
+    animation-duration: 2s;
 }
 
 /* Intro Screen Animation */
@@ -419,8 +472,18 @@ body {
 }
 
 
-#v4-titles {
-    position: absolute;
+.sketch-overlay-titles {
+    position: fixed;
+    top: 10vw;
     left: 10vw;
     right: 10vw;
 }
+
+#v4 button {
+    position: fixed;
+    left: 50%;
+    margin-left: -80px;
+    bottom: 10vw;
+}
+
+

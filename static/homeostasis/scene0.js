@@ -4,7 +4,7 @@ window.oncontextmenu = function (event) {
   return false;
 };
 
-class SceneOne {
+class SceneZero {
   constructor() {
     this.render = this.render.bind(this);
   }
@@ -15,7 +15,7 @@ class SceneOne {
       canvas0.id("scene0");
 
       // Move the canvas so it’s inside our <div id="sketch-holder">.
-      canvas0.parent('sketch-holder1');
+      canvas0.parent('sketch-holder0');
 
       if (typeof DeviceOrientationEvent.requestPermission === 'function') {
         document.body.addEventListener('click', function () {
@@ -45,7 +45,7 @@ class SceneOne {
         tb = 90;
       }
 
-      sketch.fill(0);
+      sketch.fill(220);
       sketch.ellipse(sketch.width / 2 + lr * 5, sketch.height / 2 + tb * 5, 60);
     }
   }

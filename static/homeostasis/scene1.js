@@ -4,56 +4,58 @@ window.oncontextmenu = function (event) {
   return false;
 };
 
-let avg = "no val";
-let j = 0;
+//set area state
+let userArea = 2;
+
+function selectArea1(){
+  //assign user to one area
+  userArea = 1;
+  // console.log("user selected area" + userArea);
+}
+function selectArea2(){
+  //assign user to one area
+  userArea = 2;
+  // console.log("user selected area" + userArea);
+}
+function selectArea3(){
+  //assign user to one area
+  userArea = 3;
+  // console.log("user selected area" + userArea);
+}
 
 // Setup connection
 const connection = new io();
 
 // Messages
 const sendMove = (x, y) => {
-  connection.emit("move1", {
-    x: x,
-    y: y
-  });
-  // let data = y;
-  // connection.send1("move1", data);
+  if (userArea == 1){
+    connection.emit("move1", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move1 at " + x + y);
+
+  } else if (userArea == 2){
+    connection.emit("move2", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move2 at " + x + y);
+  } else if (userArea == 3){
+    connection.emit("move3", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move3 at " + x + y);
+  } else {
+    connection.emit("move2", {
+      x: x,
+      y: y
+    });
+    // console.log("room data incorrect, sent move2 at " + x + y);
+  }
 
 };
-
-setInterval(function(){
-
-    sendMove(10, 20);
-
-
-    console.log('send move');
-}, 1000);
-
-connection.on('move1output', function (data) {
-  // Data comes in as whatever was sent, including objects
-
-  console.log("Received: 'message' " + data);
-  avg = data;
-
-  const message = data.shift();
-    if (typeof message !== "string") {
-        console.error(
-            "Received packet with invalid message type. Messages must be strings.",
-            "\n",
-            packet
-        );
-        return;
-    }
-
-  if (data !== null){
-    // data.shift();
-    // data.shift();
-    // data.shift();
-    avg = data[2];
-  } else {
-    avg = "can not get";
-  }
-});
 
 // Lifecycle handlers
 
@@ -67,7 +69,7 @@ connection.on("disconnect", function(client){
 
 //p5
 
-class SceneTwo {
+class SceneOne {
   constructor() {
     this.render = this.render.bind(this);
   }
@@ -89,14 +91,14 @@ class SceneTwo {
 
 
       // Move the canvas so it’s inside our <div id="sketch-holder">.
-      canvas.parent('sketch-holder2');
+      canvas.parent('sketch-holder1');
 
       if (typeof DeviceOrientationEvent.requestPermission === 'function') {
         document.body.addEventListener('click', function () {
           DeviceOrientationEvent.requestPermission();
           DeviceMotionEvent.requestPermission();
 
-          getAudioContext().resume();
+          sketch.getAudioContext().resume();
 
           waveJ.loop();
           console.log("playing wave!")
@@ -108,16 +110,11 @@ class SceneTwo {
 
       lineHeight = sketch.windowHeight / 10;
 
-    }
+
+    };
 
     sketch.draw = function () {
       sketch.background(0, 0, 100, 50);
-
-      // sendMove(0, j);
-      // j++;
-
-
-      sketch.text('avg is: ' + avg, 10,10);
 
       let tb = sketch.floor(sketch.rotationX);
 

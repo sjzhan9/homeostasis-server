@@ -6,10 +6,25 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-<script>
-    let socket = io();
 
-    io.emit("")
+    <button onclick="sceneChange(0)">to glaciers</button>
+    <br>
+    <button onclick="sceneChange(1)">to reef</button>
+    <br>
+    <button onclick="sceneChange(2)">to ending</button>
+
+
+    <script>
+    let socket = new io();
+
+    function sceneChange(num){
+        console.log(num);
+
+        socket.emit("changeScene", num);
+    }
+
+
+
 
 
 </script>
