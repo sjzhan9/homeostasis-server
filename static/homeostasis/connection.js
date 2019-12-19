@@ -37,10 +37,6 @@ class Connection {
             self.socket.emit(messageName, room, ...params);
         };
 
-        // self.send1 = (messageName, ...params) => {
-        //     self.socket.emit(messageName, room, ...params);
-        // };
-
         // Send to sockets in the specified room (or individual socket if a socket Id is provided)
         self.sendTo = (messageName, roomOrSocket, ...params) => {
             self.socket.emit(messageName, roomOrSocket, ...params);

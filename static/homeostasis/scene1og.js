@@ -5,30 +5,57 @@ window.oncontextmenu = function (event) {
 };
 
 //set area state
-let userArea = 1;
+let userArea = 2;
 
 function selectArea1(){
-  //assign user to one area
-  userArea = 0;
-  // console.log("user selected area" + userArea);
-}
-function selectArea2(){
   //assign user to one area
   userArea = 1;
   // console.log("user selected area" + userArea);
 }
-function selectArea3(){
+function selectArea2(){
   //assign user to one area
   userArea = 2;
   // console.log("user selected area" + userArea);
 }
+function selectArea3(){
+  //assign user to one area
+  userArea = 3;
+  // console.log("user selected area" + userArea);
+}
 
 // Setup connection
-const connection = new Connection("Homeo", "user");
-const sendInput = (section, value) => {
-    connection.send("input", section, value);
-};
+const connection = new io();
 
+// Messages
+const sendMove = (x, y) => {
+  if (userArea == 1){
+    connection.emit("move1", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move1 at " + x + y);
+
+  } else if (userArea == 2){
+    connection.emit("move2", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move2 at " + x + y);
+  } else if (userArea == 3){
+    connection.emit("move3", {
+      x: x,
+      y: y
+    });
+    // console.log("sent move3 at " + x + y);
+  } else {
+    connection.emit("move2", {
+      x: x,
+      y: y
+    });
+    // console.log("room data incorrect, sent move2 at " + x + y);
+  }
+
+};
 
 // Lifecycle handlers
 
@@ -52,7 +79,6 @@ class SceneOne {
 
     let waveJ;
     let amp = 0;
-    let steps = 1080;
     let lineHeight = 10;
 
     sketch.preload = function () {
@@ -82,13 +108,13 @@ class SceneOne {
       sketch.colorMode(sketch.HSB, 360, 100, 100, 100);
       sketch.noStroke();
 
-      lineHeight = sketch.windowHeight / steps;
+      lineHeight = sketch.windowHeight / 10;
 
 
     };
 
     sketch.draw = function () {
-      sketch.background(0, 0, 0, 100);
+      sketch.background(0, 0, 100, 50);
 
       let tb = sketch.floor(sketch.rotationX);
 
@@ -109,32 +135,29 @@ class SceneOne {
       }
 
       // between -90 and 90
-      let centerIndex = sketch.int(sketch.map(tb, -90, 90, 0, steps));
+      let centerIndex = sketch.int(sketch.map(tb, -90, 90, 0, 10));
 
-      for (let i = 0; i < steps; i++) {
+      for (let i = 0; i < 10; i++) {
         let satVal = 0;
-        if (i < centerIndex && i< (centerIndex - steps/10*4)) {
-          satVal = (centerIndex - i) * 0.2;
-        } else if (i < centerIndex && i>= (centerIndex - steps/10*4)) {
-          satVal = (centerIndex - i) * 0.6;
-        } else if (i >= centerIndex && i< (centerIndex + steps/10*6)) {
-          satVal = (i - centerIndex) * 0.6;
-        } else{
-          satVal = (i - centerIndex) * 0.2;
+        let blueVal = 190;
+        if (i <= centerIndex) {
+          satVal = (centerIndex - i) * 10;
+          blueVal += (centerIndex - i) * 5;
+        } else {
+          satVal = (i - centerIndex) * 10;
+          blueVal += (i - centerIndex) * 5;
         }
-        sketch.fill(220, 0 , 70-satVal, 100);
+        sketch.fill(220, satVal, 100, 80);
         sketch.rect(0, i * lineHeight, sketch.width, lineHeight);
       }
 
       sketch.fill(0, 100, 100);
-      // sketch.text(tb, sketch.width / 2, sketch.height / 2);
+      sketch.text(tb, sketch.width / 2, sketch.height / 2);
 
       // sendMove(0, tb);
 
       if (sketch.frameCount % 12 == 0) {
-        sendInput(userArea, tb);
-        // console.log(userArea);
-
+        sendMove(0, tb);
       }
 
     }

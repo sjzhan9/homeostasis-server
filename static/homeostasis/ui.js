@@ -28,9 +28,11 @@ function onLoad(){
     let sketchZero = new SceneZero();
     let sketchOne = new SceneOne();
     let sketchTwo = new SceneTwo();
+    let sketchThree = new SceneThree();
     new p5(sketchZero.render, 'scenezero');
     new p5(sketchOne.render, 'sceneone');
     new p5(sketchTwo.render, 'scenetwo');
+    new p5(sketchThree.render, 'scenethree');
     
     var view1 = document.getElementById("view1");
     var view2 = document.getElementById("view2");
@@ -39,6 +41,8 @@ function onLoad(){
     var view4 = document.getElementById("view4");
     var view45 = document.getElementById("view45");
     var view5 = document.getElementById("view5");
+    var view55 = document.getElementById("view55");
+    var view6 = document.getElementById("view6");
 
     view2.style.display = "flex";
     selectRoom.style.display = "none";
@@ -46,6 +50,9 @@ function onLoad(){
     view4.style.display = "none";
     view45.style.display = "none";
     view5.style.display = "none";
+    view55.style.display = "none";
+    view6.style.display = "none";
+
 }
 
 function transitionToView2(){
@@ -62,7 +69,7 @@ function transitionToView3(){
     selectRoom.style.display = "none";
     view3.style.display = "flex";
 
-    var delayInMilliseconds = 2000; //1 second
+    var delayInMilliseconds = 4000; //1 second
     setTimeout(function() {
         transitionToView4()
     }, delayInMilliseconds);
@@ -75,7 +82,7 @@ function transitionToView4(){
 function transitionToView45(){
     view4.style.display = "none";
     view45.style.display = "flex";
-    setTimeout(function(){ transitionToView5() }, 2000);
+    setTimeout(function(){ transitionToView5() }, 4000);
 }
 
 function transitionToView5(){
@@ -83,8 +90,15 @@ function transitionToView5(){
     view5.style.display = "flex";
 
 }
-// function transitionToView6(){
-//     view5.style.display = "none";
-//     view6.style.display = "flex";
-// }
+
+function transitionToView55(){
+    view5.style.display = "none";
+    view55.style.display = "flex";
+    setTimeout(function(){ transitionToView6() }, 4000);
+}
+
+function transitionToView6(){
+    view55.style.display = "none";
+    view6.style.display = "flex";
+}
 

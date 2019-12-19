@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Controller</title>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="connection.js"></script>
+
 </head>
 <body>
 
@@ -15,12 +17,17 @@
 
 
     <script>
-    let socket = new io();
+    // let socket = new io();
+
+    const connection = new Connection("Homeo", "user");
+
 
     function sceneChange(num){
-        console.log(num);
-
-        socket.emit("changeScene", num);
+        console.log("before change scene to " + num);
+        connection.socket.emit("changeScene", num);
+        //connection.send("changeScene", num);
+        // self.socket.emit(messageName, room, ...params);
+        // socket.emit("changeScene", num);
     }
 
 

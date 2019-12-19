@@ -5,10 +5,14 @@
 <head>
     <title>Homeostasis</title>
     <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+    <script src="connection.js"></script>
+
     <script src="/socket.io/socket.io.js"></script>
 </head>
 
@@ -16,7 +20,7 @@
     <script src="scene0.js"></script>
     <script src="scene1.js"></script>
     <script src="scene2.js"></script>
-
+    <script src="scene3.js"></script>
     <script src="ui.js"></script>
 
 
@@ -55,7 +59,7 @@
 
         <div id = "set-up-ready" onclick="transitionToSelectRoom()" style="margin-left: auto; margin-bottom: 26px;">
             <span style="display: inline-block">
-               <h5 style="font-size: 17px; margin-right:6px; letter-spacing: -1.2px;"> I'M READY</h5> 
+               <h5 style="font-size: 17px; margin-right:6px; letter-spacing: 0.7px;"> I'M READY</h5> 
             </span>
             <img src="assets/right-arrow.svg" alt=">" height="24px" style="transform: translateY(6px);">
         </div>
@@ -77,31 +81,31 @@
             <div class="room-item room-center"  onclick="selectArea2(); transitionToView3()"> </div>
             <div class="room-item room-side" onclick="selectArea3(); transitionToView3()"> </div>
         </div>
-        <p style="padding: 40px;">
-            Select where you are in the room in relation to the screen. In the following experience, 
-            you will follow the conductor in your area</p>
+        <p style="font-size: 14px; padding: 26px 16px 60px 16px;">
+            Select where you are in relation to the screen. <br>
+            In the following experience, please follow the conductor in your area.</p>
     </div>
     </div>
 
-    <div id="view3" class="trans homeostasis center scene1">
-        <h1 class="trans-title">SEA</h1>
-        <img class="trans-img" src="assets/phone.png"
-            style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
-        <p class="trans-p" style="padding-bottom: 20vh;">Keep the homeostasis of the sea</p>
+    <div id="view3" class="trans homeostasis center">
+        <h1 class="trans-title">Get Ready</h1>
+        <!-- <img class="trans-img" src="assets/phone.png"
+            style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;"> -->
+        <p class="trans-p" style="padding-bottom: 20vh;">Gently rock your phone with your conductor</p>
     </div>
 
-    <div id="view4" class="homeostasis center flex-center scene1">
+    <div id="view4" class="homeostasis center flex-center">
         
 
-        <div id="sketch-holder1" style="height:100vh;">
+        <div id="sketch-holder1" style="height:100vh; opacity: 0.7;">
             <div id="sceneone"></div>
 
         </div>
         <div class="sketch-overlay-titles">
-                <h1>SEA</h1>
-                <p>Keep the homeostasis of the sea</p>
+                <!-- <h1>Test</h1> -->
+                <p style="color:rgba(255, 255, 255, 0.205);">Please follow the conductor</p>
             </div>
-        <!-- <button id="v4-button" onclick="transitionToView45()">Continue</button> -->
+         <button id="v4-button" style="position: fixed" onclick="transitionToView45()">Continue</button>
 
     </div>
 
@@ -123,9 +127,30 @@
     
                 <!-- <script src="/homeostasis/scene1.js"></script> -->
             </div>
-            <!-- <button id="v2-button" onclick="transitionToView5()">Continue</button> -->
+             <button  style="position: fixed; z-index: 999;" id="v2-button" onclick="transitionToView55()">Continue</button>
 
         </div>
+
+    <div id="view55" class="trans homeostasis center scene1">
+        <h1 class="trans-title">Coral Reef</h1>
+        <img class="trans-img" src="assets/phone.png"
+             style="width: 256.86px;height: 124.86px; margin-left: auto; margin-right: auto;">
+        <p class="trans-p" style="padding-bottom: 20vh;">Keep the homeostasis of the glaciers</p>
+    </div>
+
+    <div id="view6" class="homeostasis center scene1">
+        <div class="sketch-overlay-titles">
+            <h1>Coral Reef</h1>
+            <p>Keep the homeostasis of the coral reefs.</p>
+        </div>
+
+        <div id="sketch-holder3" style="height:100vh;">
+            <div id="scenethree"></div>
+
+        </div>
+        <!--<button id="v3-button" onclick="transitionToView6()">Continue</button>-->
+
+    </div>
 
 </body>
 
