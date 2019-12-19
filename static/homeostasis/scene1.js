@@ -7,17 +7,19 @@ window.oncontextmenu = function (event) {
 //set area state
 let userArea = 1;
 
-function selectArea1(){
+function selectArea1() {
   //assign user to one area
   userArea = 0;
   // console.log("user selected area" + userArea);
 }
-function selectArea2(){
+
+function selectArea2() {
   //assign user to one area
   userArea = 1;
   // console.log("user selected area" + userArea);
 }
-function selectArea3(){
+
+function selectArea3() {
   //assign user to one area
   userArea = 2;
   // console.log("user selected area" + userArea);
@@ -26,18 +28,18 @@ function selectArea3(){
 // Setup connection
 const connection = new Connection("Homeo", "user");
 const sendInput = (section, value) => {
-    connection.send("input", section, value);
+  connection.send("input", section, value);
 };
 
 
 // Lifecycle handlers
 
-connection.on("connect", function(client){
-    console.log("I connected with id:", connection.id);
+connection.on("connect", function (client) {
+  console.log("I connected with id:", connection.id);
 });
 
-connection.on("disconnect", function(client){
-    console.log("I disconnected with id:", connection.id);
+connection.on("disconnect", function (client) {
+  console.log("I disconnected with id:", connection.id);
 });
 
 //p5
@@ -54,6 +56,21 @@ class SceneOne {
     let amp = 0;
     let steps = 1080;
     let lineHeight = 10;
+
+
+    setInterval(function () {
+      if (waveJ == null) return;
+      if (view4.style.display !== "none" || view45.style.display !== "none" || view5.style.display !== "none" || view55.style.display !== "none" || view6.style.display !== "none") {
+        // console.log("sound on")
+        if (waveJ.isPlaying()) {
+          return;
+        } else {
+          waveJ.loop();
+        }
+      } else {
+        waveJ.stop();
+      }
+    }, 300);
 
     sketch.preload = function () {
       waveJ = sketch.loadSound("assets/wave.mp3");
@@ -73,9 +90,7 @@ class SceneOne {
           DeviceMotionEvent.requestPermission();
 
           sketch.getAudioContext().resume();
-
           waveJ.loop();
-          console.log("playing wave!")
         });
       }
 
@@ -83,7 +98,6 @@ class SceneOne {
       sketch.noStroke();
 
       lineHeight = sketch.windowHeight / steps;
-
 
     };
 
@@ -113,16 +127,16 @@ class SceneOne {
 
       for (let i = 0; i < steps; i++) {
         let satVal = 0;
-        if (i < centerIndex && i< (centerIndex - steps/10*4)) {
+        if (i < centerIndex && i < (centerIndex - steps / 10 * 4)) {
           satVal = (centerIndex - i) * 0.2;
-        } else if (i < centerIndex && i>= (centerIndex - steps/10*4)) {
+        } else if (i < centerIndex && i >= (centerIndex - steps / 10 * 4)) {
           satVal = (centerIndex - i) * 0.6;
-        } else if (i >= centerIndex && i< (centerIndex + steps/10*6)) {
+        } else if (i >= centerIndex && i < (centerIndex + steps / 10 * 6)) {
           satVal = (i - centerIndex) * 0.6;
-        } else{
+        } else {
           satVal = (i - centerIndex) * 0.2;
         }
-        sketch.fill(220, 0 , 70-satVal, 100);
+        sketch.fill(220, 0, 70 - satVal, 100);
         sketch.rect(0, i * lineHeight, sketch.width, lineHeight);
       }
 

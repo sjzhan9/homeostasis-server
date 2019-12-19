@@ -10,118 +10,126 @@
 </head>
 
 <script>
-//************ Normalize mobile view height ************//
-        // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    //************ Normalize mobile view height ************//
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+    // We listen to the resize event
+    window.addEventListener('resize', () => {
+        // We execute the same script as before
         let vh = window.innerHeight * 0.01;
-        // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-        
-        // We listen to the resize event
-        window.addEventListener('resize', () => {
-            // We execute the same script as before
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-          });
+    });
         //************ Normalize mobile view height end ************//
-        </script>
+</script>
 
 <body>
     <section id="credit" class="homeostasis scene1 fade-in">
         <h1>Homeostasis</h1>
-        <p id="description">A project of New York University’s ITP program (Interactive Telecommunication) 
+        <p id="description">A project of New York University’s ITP program (Interactive Telecommunication)
             taught by Mattia Romeo.</p>
-            <div class="credit-block">
-                <a href="https://cargocollective.com/kcconch/About-Me">
-                    <div class="credit-container">
-                        <h6 class="credit-role">unity interactivity</h6>
-                        <span style="display: inline-block"><h4 class="credit-name">casey conchinha</h4></span>
-                            <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
-                    </div>
-                </a>
-                <a href="https://ellielin.com/">
-
-                    <div class="credit-container">
-                        <h6 class="credit-role">unity scene building</h6>
-                        <span style="display: inline-block"><h4 class="credit-name">ellie lin</h4></span>
-                            <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
-                    </div>
-                </a>
-
-                <a href="http://jiwonshin.com/">
+        <div class="credit-block">
+            <a href="https://cargocollective.com/kcconch/About-Me">
                 <div class="credit-container">
-                    <h6 class="credit-role">sound and server dev</h6>
-                    <span style="display: inline-block"><h4 class="credit-name">jiwon shin</h4></span>
-                        <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
+                    <h6 class="credit-role">unity development</h6>
+                    <span style="display: inline-block">
+                        <h4 class="credit-name">casey conchinha</h4>
+                    </span>
+                    <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
                 </div>
-                </a>
+            </a>
+            <a href="https://ellielin.com/">
 
-                <a href="https://s-j-zhang.com">
                 <div class="credit-container">
-                    <h6 class="credit-role">mobile client & server dev</h6>
-                    <span style="display: inline-block"><h4 class="credit-name">s. j. zhang</h4></span>
-                        <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
+                    <h6 class="credit-role">unity deveopment</h6>
+                    <span style="display: inline-block">
+                        <h4 class="credit-name">ellie lin</h4>
+                    </span>
+                    <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
                 </div>
-                </a>
+            </a>
 
-            </div>
-        
+            <a href="http://jiwonshin.com/">
+                <div class="credit-container">
+                    <h6 class="credit-role">sound & server dev.</h6>
+                    <span style="display: inline-block">
+                        <h4 class="credit-name">jiwon shin</h4>
+                    </span>
+                    <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
+                </div>
+            </a>
+
+            <a href="https://s-j-zhang.com">
+                <div class="credit-container">
+                    <h6 class="credit-role">mobile client & server dev.</h6>
+                    <span style="display: inline-block">
+                        <h4 class="credit-name">s. j. zhang</h4>
+                    </span>
+                    <img src="assets/credit-arrow.svg" alt=">" height="12px" style="transform: translateY(0px);">
+                </div>
+            </a>
+
+        </div>
+
 
     </section>
     <style>
-        #credit h1{
+        #credit h1 {
             font-size: 60px;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.1);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.1);
 
             text-align: left;
             transform: rotate(90deg);
             transform-origin: 4% 100%;
             position: fixed;
         }
-        #description{
+
+        #description {
             font-size: 11px;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.4);
-        padding: 30px 10px 10px 150px;
-        text-align: left;
-        margin: 0px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 30px 10px 10px 150px;
+            text-align: left;
+            margin: 0px;
 
         }
 
-        .credit-container{
+        .credit-container {
             padding: 12px 0px 12px 12px;
         }
 
-        .credit-block{
+        .credit-block {
             padding: 10px 40px 10px 140px;
             position: absolute;
             bottom: 4vh;
             /* float: right; */
         }
-    
-    .credit-role{
-        font-size: 12px;
-        font-weight: 300;
-        color: rgba(255, 255, 255, 0.3);
-        text-transform: uppercase;
-        margin:0;
-        padding-bottom: 0px;
-    }
 
-    .credit-name{
-        font-size: 18px;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.9);
-        text-transform: capitalize;
-        text-decoration: none;
-        margin:12px 0px 12px 0px;
+        .credit-role {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            margin: 0;
+            padding-bottom: 0px;
+        }
 
-    }
-    a {
-  color: rgba(87, 41, 64, 0);
-}
-    
-    
+        .credit-name {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: capitalize;
+            text-decoration: none;
+            margin: 12px 0px 12px 0px;
+
+        }
+
+        a {
+            color: rgba(87, 41, 64, 0);
+        }
     </style>
 </body>
 

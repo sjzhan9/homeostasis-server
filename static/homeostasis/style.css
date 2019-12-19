@@ -349,7 +349,7 @@ h2 {
     animation-timing-function: ease-in-out;
 }
 @keyframes fi4 {
-    0%   { opacity: 0.7; }
+    0%   { opacity: 0.5; }
     100% { opacity: 0; }
 }
 .fade-out-4{
@@ -358,7 +358,7 @@ h2 {
     animation-timing-function: ease-in-out;
 }
 @keyframes fo4 {
-    0%   { opacity: 0.7; }
+    0%   { opacity: 0.5; }
     100% { opacity: 0; }
 }
 
