@@ -137,7 +137,9 @@ class Glacier {
     }
 
     display() {
-        this.sketch.fill(0, 0, 100);
+        // this.sketch.fill(0, 0, 100);
+        this.sketch.fill(33, 105, 146);
+
         this.sketch.push();
         this.sketch.translate(this.pos.x, this.pos.y);
         this.sketch.rotate(this.pos.heading());
